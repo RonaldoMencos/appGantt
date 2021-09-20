@@ -1,0 +1,22 @@
+.color-primario{
+    color:#18305e !important;
+}
+.bk-primario{
+    background-color: #18305e !important;
+}
+
+@media (min-width: 768px) {
+    .card-tamanio {
+        width: 100%;
+        margin-top:20%;    
+    }
+}
+
+
+@media (min-width: 992px) { 
+.card-tamanio {
+        width: 30%;
+        margin-top:10%;    
+    }
+}
+
