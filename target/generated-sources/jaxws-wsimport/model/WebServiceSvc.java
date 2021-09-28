@@ -28,6 +28,41 @@ public interface WebServiceSvc {
 
     /**
      * 
+     * @param descripcion
+     * @param tarea
+     * @param idActividad
+     * @param fechaInicio
+     * @param titulo
+     * @param fechaFin
+     * @return
+     *     returns int
+     * @throws ParseException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "actualizarActividad", targetNamespace = "http://services/", className = "model.ActualizarActividad")
+    @ResponseWrapper(localName = "actualizarActividadResponse", targetNamespace = "http://services/", className = "model.ActualizarActividadResponse")
+    @Action(input = "http://services/WebServiceSvc/actualizarActividadRequest", output = "http://services/WebServiceSvc/actualizarActividadResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/actualizarActividad/Fault/ParseException")
+    })
+    public int actualizarActividad(
+        @WebParam(name = "titulo", targetNamespace = "")
+        String titulo,
+        @WebParam(name = "descripcion", targetNamespace = "")
+        String descripcion,
+        @WebParam(name = "fechaInicio", targetNamespace = "")
+        String fechaInicio,
+        @WebParam(name = "fechaFin", targetNamespace = "")
+        String fechaFin,
+        @WebParam(name = "tarea", targetNamespace = "")
+        int tarea,
+        @WebParam(name = "idActividad", targetNamespace = "")
+        int idActividad)
+        throws ParseException_Exception
+    ;
+
+    /**
+     * 
      * @param idUsuario
      * @return
      *     returns model.Usuario
@@ -48,48 +83,21 @@ public interface WebServiceSvc {
 
     /**
      * 
-     * @param password
-     * @param apellido
-     * @param idUsuario
-     * @param nombre
-     * @param email
+     * @param idEmpresa
      * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "actualizarUsuario", targetNamespace = "http://services/", className = "model.ActualizarUsuario")
-    @ResponseWrapper(localName = "actualizarUsuarioResponse", targetNamespace = "http://services/", className = "model.ActualizarUsuarioResponse")
-    @Action(input = "http://services/WebServiceSvc/actualizarUsuarioRequest", output = "http://services/WebServiceSvc/actualizarUsuarioResponse")
-    public int actualizarUsuario(
-        @WebParam(name = "nombre", targetNamespace = "")
-        String nombre,
-        @WebParam(name = "apellido", targetNamespace = "")
-        String apellido,
-        @WebParam(name = "email", targetNamespace = "")
-        String email,
-        @WebParam(name = "password", targetNamespace = "")
-        String password,
-        @WebParam(name = "idUsuario", targetNamespace = "")
-        int idUsuario);
-
-    /**
-     * 
-     * @param idActividad
-     * @return
-     *     returns model.Actividad
+     *     returns model.Empresa
      * @throws ParseException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarActividadPorId", targetNamespace = "http://services/", className = "model.ListarActividadPorId")
-    @ResponseWrapper(localName = "listarActividadPorIdResponse", targetNamespace = "http://services/", className = "model.ListarActividadPorIdResponse")
-    @Action(input = "http://services/WebServiceSvc/listarActividadPorIdRequest", output = "http://services/WebServiceSvc/listarActividadPorIdResponse", fault = {
-        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/listarActividadPorId/Fault/ParseException")
+    @RequestWrapper(localName = "listarEmpresaPorId", targetNamespace = "http://services/", className = "model.ListarEmpresaPorId")
+    @ResponseWrapper(localName = "listarEmpresaPorIdResponse", targetNamespace = "http://services/", className = "model.ListarEmpresaPorIdResponse")
+    @Action(input = "http://services/WebServiceSvc/listarEmpresaPorIdRequest", output = "http://services/WebServiceSvc/listarEmpresaPorIdResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/listarEmpresaPorId/Fault/ParseException")
     })
-    public Actividad listarActividadPorId(
-        @WebParam(name = "idActividad", targetNamespace = "")
-        int idActividad)
+    public Empresa listarEmpresaPorId(
+        @WebParam(name = "idEmpresa", targetNamespace = "")
+        int idEmpresa)
         throws ParseException_Exception
     ;
 
@@ -130,18 +138,41 @@ public interface WebServiceSvc {
 
     /**
      * 
+     * @param idActividad
      * @return
-     *     returns java.util.List<model.Actividad>
+     *     returns int
      * @throws ParseException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarActividades", targetNamespace = "http://services/", className = "model.ListarActividades")
-    @ResponseWrapper(localName = "listarActividadesResponse", targetNamespace = "http://services/", className = "model.ListarActividadesResponse")
-    @Action(input = "http://services/WebServiceSvc/listarActividadesRequest", output = "http://services/WebServiceSvc/listarActividadesResponse", fault = {
-        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/listarActividades/Fault/ParseException")
+    @RequestWrapper(localName = "eliminarActividad", targetNamespace = "http://services/", className = "model.EliminarActividad")
+    @ResponseWrapper(localName = "eliminarActividadResponse", targetNamespace = "http://services/", className = "model.EliminarActividadResponse")
+    @Action(input = "http://services/WebServiceSvc/eliminarActividadRequest", output = "http://services/WebServiceSvc/eliminarActividadResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/eliminarActividad/Fault/ParseException")
     })
-    public List<Actividad> listarActividades()
+    public int eliminarActividad(
+        @WebParam(name = "idActividad", targetNamespace = "")
+        int idActividad)
+        throws ParseException_Exception
+    ;
+
+    /**
+     * 
+     * @param idActividad
+     * @return
+     *     returns model.Actividad
+     * @throws ParseException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarActividadPorId", targetNamespace = "http://services/", className = "model.ListarActividadPorId")
+    @ResponseWrapper(localName = "listarActividadPorIdResponse", targetNamespace = "http://services/", className = "model.ListarActividadPorIdResponse")
+    @Action(input = "http://services/WebServiceSvc/listarActividadPorIdRequest", output = "http://services/WebServiceSvc/listarActividadPorIdResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/listarActividadPorId/Fault/ParseException")
+    })
+    public Actividad listarActividadPorId(
+        @WebParam(name = "idActividad", targetNamespace = "")
+        int idActividad)
         throws ParseException_Exception
     ;
 
@@ -149,7 +180,6 @@ public interface WebServiceSvc {
      * 
      * @param descripcion
      * @param tarea
-     * @param idActividad
      * @param fechaInicio
      * @param titulo
      * @param fechaFin
@@ -159,12 +189,12 @@ public interface WebServiceSvc {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "actualizarActividad", targetNamespace = "http://services/", className = "model.ActualizarActividad")
-    @ResponseWrapper(localName = "actualizarActividadResponse", targetNamespace = "http://services/", className = "model.ActualizarActividadResponse")
-    @Action(input = "http://services/WebServiceSvc/actualizarActividadRequest", output = "http://services/WebServiceSvc/actualizarActividadResponse", fault = {
-        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/actualizarActividad/Fault/ParseException")
+    @RequestWrapper(localName = "insertarActividad", targetNamespace = "http://services/", className = "model.InsertarActividad")
+    @ResponseWrapper(localName = "insertarActividadResponse", targetNamespace = "http://services/", className = "model.InsertarActividadResponse")
+    @Action(input = "http://services/WebServiceSvc/insertarActividadRequest", output = "http://services/WebServiceSvc/insertarActividadResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/insertarActividad/Fault/ParseException")
     })
-    public int actualizarActividad(
+    public int insertarActividad(
         @WebParam(name = "titulo", targetNamespace = "")
         String titulo,
         @WebParam(name = "descripcion", targetNamespace = "")
@@ -174,11 +204,36 @@ public interface WebServiceSvc {
         @WebParam(name = "fechaFin", targetNamespace = "")
         String fechaFin,
         @WebParam(name = "tarea", targetNamespace = "")
-        int tarea,
-        @WebParam(name = "idActividad", targetNamespace = "")
-        int idActividad)
+        int tarea)
         throws ParseException_Exception
     ;
+
+    /**
+     * 
+     * @param password
+     * @param apellido
+     * @param idUsuario
+     * @param nombre
+     * @param email
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "actualizarUsuario", targetNamespace = "http://services/", className = "model.ActualizarUsuario")
+    @ResponseWrapper(localName = "actualizarUsuarioResponse", targetNamespace = "http://services/", className = "model.ActualizarUsuarioResponse")
+    @Action(input = "http://services/WebServiceSvc/actualizarUsuarioRequest", output = "http://services/WebServiceSvc/actualizarUsuarioResponse")
+    public int actualizarUsuario(
+        @WebParam(name = "nombre", targetNamespace = "")
+        String nombre,
+        @WebParam(name = "apellido", targetNamespace = "")
+        String apellido,
+        @WebParam(name = "email", targetNamespace = "")
+        String email,
+        @WebParam(name = "password", targetNamespace = "")
+        String password,
+        @WebParam(name = "idUsuario", targetNamespace = "")
+        int idUsuario);
 
     /**
      * 
@@ -232,10 +287,103 @@ public interface WebServiceSvc {
 
     /**
      * 
+     * @return
+     *     returns java.util.List<model.Actividad>
+     * @throws ParseException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarActividades", targetNamespace = "http://services/", className = "model.ListarActividades")
+    @ResponseWrapper(localName = "listarActividadesResponse", targetNamespace = "http://services/", className = "model.ListarActividadesResponse")
+    @Action(input = "http://services/WebServiceSvc/listarActividadesRequest", output = "http://services/WebServiceSvc/listarActividadesResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/listarActividades/Fault/ParseException")
+    })
+    public List<Actividad> listarActividades()
+        throws ParseException_Exception
+    ;
+
+    /**
+     * 
+     * @param idProyecto
+     * @return
+     *     returns model.Proyecto
+     * @throws ParseException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarProyectoPorId", targetNamespace = "http://services/", className = "model.ListarProyectoPorId")
+    @ResponseWrapper(localName = "listarProyectoPorIdResponse", targetNamespace = "http://services/", className = "model.ListarProyectoPorIdResponse")
+    @Action(input = "http://services/WebServiceSvc/listarProyectoPorIdRequest", output = "http://services/WebServiceSvc/listarProyectoPorIdResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/listarProyectoPorId/Fault/ParseException")
+    })
+    public Proyecto listarProyectoPorId(
+        @WebParam(name = "idProyecto", targetNamespace = "")
+        int idProyecto)
+        throws ParseException_Exception
+    ;
+
+    /**
+     * 
+     * @param idUsuario
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "eliminarUsuario", targetNamespace = "http://services/", className = "model.EliminarUsuario")
+    @ResponseWrapper(localName = "eliminarUsuarioResponse", targetNamespace = "http://services/", className = "model.EliminarUsuarioResponse")
+    @Action(input = "http://services/WebServiceSvc/eliminarUsuarioRequest", output = "http://services/WebServiceSvc/eliminarUsuarioResponse")
+    public int eliminarUsuario(
+        @WebParam(name = "idUsuario", targetNamespace = "")
+        int idUsuario);
+
+    /**
+     * 
+     * @param direccion
+     * @param telefono
+     * @param nombre
+     * @param email
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "insertarEmpresa", targetNamespace = "http://services/", className = "model.InsertarEmpresa")
+    @ResponseWrapper(localName = "insertarEmpresaResponse", targetNamespace = "http://services/", className = "model.InsertarEmpresaResponse")
+    @Action(input = "http://services/WebServiceSvc/insertarEmpresaRequest", output = "http://services/WebServiceSvc/insertarEmpresaResponse")
+    public int insertarEmpresa(
+        @WebParam(name = "nombre", targetNamespace = "")
+        String nombre,
+        @WebParam(name = "direccion", targetNamespace = "")
+        String direccion,
+        @WebParam(name = "email", targetNamespace = "")
+        String email,
+        @WebParam(name = "telefono", targetNamespace = "")
+        String telefono);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<model.Empresa>
+     * @throws ParseException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarEmpresas", targetNamespace = "http://services/", className = "model.ListarEmpresas")
+    @ResponseWrapper(localName = "listarEmpresasResponse", targetNamespace = "http://services/", className = "model.ListarEmpresasResponse")
+    @Action(input = "http://services/WebServiceSvc/listarEmpresasRequest", output = "http://services/WebServiceSvc/listarEmpresasResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/listarEmpresas/Fault/ParseException")
+    })
+    public List<Empresa> listarEmpresas()
+        throws ParseException_Exception
+    ;
+
+    /**
+     * 
      * @param descripcion
-     * @param tarea
      * @param fechaInicio
      * @param titulo
+     * @param proyecto
      * @param fechaFin
      * @return
      *     returns int
@@ -243,12 +391,12 @@ public interface WebServiceSvc {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "insertarActividad", targetNamespace = "http://services/", className = "model.InsertarActividad")
-    @ResponseWrapper(localName = "insertarActividadResponse", targetNamespace = "http://services/", className = "model.InsertarActividadResponse")
-    @Action(input = "http://services/WebServiceSvc/insertarActividadRequest", output = "http://services/WebServiceSvc/insertarActividadResponse", fault = {
-        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/insertarActividad/Fault/ParseException")
+    @RequestWrapper(localName = "insertarTarea", targetNamespace = "http://services/", className = "model.InsertarTarea")
+    @ResponseWrapper(localName = "insertarTareaResponse", targetNamespace = "http://services/", className = "model.InsertarTareaResponse")
+    @Action(input = "http://services/WebServiceSvc/insertarTareaRequest", output = "http://services/WebServiceSvc/insertarTareaResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/insertarTarea/Fault/ParseException")
     })
-    public int insertarActividad(
+    public int insertarTarea(
         @WebParam(name = "titulo", targetNamespace = "")
         String titulo,
         @WebParam(name = "descripcion", targetNamespace = "")
@@ -257,45 +405,102 @@ public interface WebServiceSvc {
         String fechaInicio,
         @WebParam(name = "fechaFin", targetNamespace = "")
         String fechaFin,
-        @WebParam(name = "tarea", targetNamespace = "")
-        int tarea)
+        @WebParam(name = "proyecto", targetNamespace = "")
+        int proyecto)
         throws ParseException_Exception
     ;
 
     /**
      * 
-     * @param idActividad
+     * @param descripcion
+     * @param fechaInicio
+     * @param idTarea
+     * @param titulo
+     * @param proyecto
+     * @param fechaFin
      * @return
      *     returns int
      * @throws ParseException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "eliminarActividad", targetNamespace = "http://services/", className = "model.EliminarActividad")
-    @ResponseWrapper(localName = "eliminarActividadResponse", targetNamespace = "http://services/", className = "model.EliminarActividadResponse")
-    @Action(input = "http://services/WebServiceSvc/eliminarActividadRequest", output = "http://services/WebServiceSvc/eliminarActividadResponse", fault = {
-        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/eliminarActividad/Fault/ParseException")
+    @RequestWrapper(localName = "actualizarTarea", targetNamespace = "http://services/", className = "model.ActualizarTarea")
+    @ResponseWrapper(localName = "actualizarTareaResponse", targetNamespace = "http://services/", className = "model.ActualizarTareaResponse")
+    @Action(input = "http://services/WebServiceSvc/actualizarTareaRequest", output = "http://services/WebServiceSvc/actualizarTareaResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/actualizarTarea/Fault/ParseException")
     })
-    public int eliminarActividad(
-        @WebParam(name = "idActividad", targetNamespace = "")
-        int idActividad)
+    public int actualizarTarea(
+        @WebParam(name = "titulo", targetNamespace = "")
+        String titulo,
+        @WebParam(name = "descripcion", targetNamespace = "")
+        String descripcion,
+        @WebParam(name = "fechaInicio", targetNamespace = "")
+        String fechaInicio,
+        @WebParam(name = "fechaFin", targetNamespace = "")
+        String fechaFin,
+        @WebParam(name = "proyecto", targetNamespace = "")
+        int proyecto,
+        @WebParam(name = "idTarea", targetNamespace = "")
+        int idTarea)
         throws ParseException_Exception
     ;
 
     /**
      * 
-     * @param idProyecto
      * @return
-     *     returns int
+     *     returns java.util.List<model.Proyecto>
+     * @throws ParseException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "eliminarProyecto", targetNamespace = "http://services/", className = "model.EliminarProyecto")
-    @ResponseWrapper(localName = "eliminarProyectoResponse", targetNamespace = "http://services/", className = "model.EliminarProyectoResponse")
-    @Action(input = "http://services/WebServiceSvc/eliminarProyectoRequest", output = "http://services/WebServiceSvc/eliminarProyectoResponse")
-    public int eliminarProyecto(
-        @WebParam(name = "idProyecto", targetNamespace = "")
-        int idProyecto);
+    @RequestWrapper(localName = "listarProyectos", targetNamespace = "http://services/", className = "model.ListarProyectos")
+    @ResponseWrapper(localName = "listarProyectosResponse", targetNamespace = "http://services/", className = "model.ListarProyectosResponse")
+    @Action(input = "http://services/WebServiceSvc/listarProyectosRequest", output = "http://services/WebServiceSvc/listarProyectosResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/listarProyectos/Fault/ParseException")
+    })
+    public List<Proyecto> listarProyectos()
+        throws ParseException_Exception
+    ;
+
+    /**
+     * 
+     * @param idTarea
+     * @return
+     *     returns int
+     * @throws ParseException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "eliminarTarea", targetNamespace = "http://services/", className = "model.EliminarTarea")
+    @ResponseWrapper(localName = "eliminarTareaResponse", targetNamespace = "http://services/", className = "model.EliminarTareaResponse")
+    @Action(input = "http://services/WebServiceSvc/eliminarTareaRequest", output = "http://services/WebServiceSvc/eliminarTareaResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/eliminarTarea/Fault/ParseException")
+    })
+    public int eliminarTarea(
+        @WebParam(name = "idTarea", targetNamespace = "")
+        int idTarea)
+        throws ParseException_Exception
+    ;
+
+    /**
+     * 
+     * @param idTarea
+     * @return
+     *     returns model.Tarea
+     * @throws ParseException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarTareaPorId", targetNamespace = "http://services/", className = "model.ListarTareaPorId")
+    @ResponseWrapper(localName = "listarTareaPorIdResponse", targetNamespace = "http://services/", className = "model.ListarTareaPorIdResponse")
+    @Action(input = "http://services/WebServiceSvc/listarTareaPorIdRequest", output = "http://services/WebServiceSvc/listarTareaPorIdResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/listarTareaPorId/Fault/ParseException")
+    })
+    public Tarea listarTareaPorId(
+        @WebParam(name = "idTarea", targetNamespace = "")
+        int idTarea)
+        throws ParseException_Exception
+    ;
 
     /**
      * 
@@ -340,6 +545,36 @@ public interface WebServiceSvc {
 
     /**
      * 
+     * @param idEmpresa
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "eliminarEmpresa", targetNamespace = "http://services/", className = "model.EliminarEmpresa")
+    @ResponseWrapper(localName = "eliminarEmpresaResponse", targetNamespace = "http://services/", className = "model.EliminarEmpresaResponse")
+    @Action(input = "http://services/WebServiceSvc/eliminarEmpresaRequest", output = "http://services/WebServiceSvc/eliminarEmpresaResponse")
+    public int eliminarEmpresa(
+        @WebParam(name = "idEmpresa", targetNamespace = "")
+        int idEmpresa);
+
+    /**
+     * 
+     * @param idProyecto
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "eliminarProyecto", targetNamespace = "http://services/", className = "model.EliminarProyecto")
+    @ResponseWrapper(localName = "eliminarProyectoResponse", targetNamespace = "http://services/", className = "model.EliminarProyectoResponse")
+    @Action(input = "http://services/WebServiceSvc/eliminarProyectoRequest", output = "http://services/WebServiceSvc/eliminarProyectoResponse")
+    public int eliminarProyecto(
+        @WebParam(name = "idProyecto", targetNamespace = "")
+        int idProyecto);
+
+    /**
+     * 
      * @param descripcion
      * @param fechaInicio
      * @param titulo
@@ -372,56 +607,19 @@ public interface WebServiceSvc {
 
     /**
      * 
-     * @param direccion
-     * @param telefono
-     * @param nombre
-     * @param email
      * @return
-     *     returns int
+     *     returns java.util.List<model.Tarea>
+     * @throws ParseException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "insertarEmpresa", targetNamespace = "http://services/", className = "model.InsertarEmpresa")
-    @ResponseWrapper(localName = "insertarEmpresaResponse", targetNamespace = "http://services/", className = "model.InsertarEmpresaResponse")
-    @Action(input = "http://services/WebServiceSvc/insertarEmpresaRequest", output = "http://services/WebServiceSvc/insertarEmpresaResponse")
-    public int insertarEmpresa(
-        @WebParam(name = "nombre", targetNamespace = "")
-        String nombre,
-        @WebParam(name = "direccion", targetNamespace = "")
-        String direccion,
-        @WebParam(name = "email", targetNamespace = "")
-        String email,
-        @WebParam(name = "telefono", targetNamespace = "")
-        String telefono);
-
-    /**
-     * 
-     * @param idEmpresa
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "eliminarEmpresa", targetNamespace = "http://services/", className = "model.EliminarEmpresa")
-    @ResponseWrapper(localName = "eliminarEmpresaResponse", targetNamespace = "http://services/", className = "model.EliminarEmpresaResponse")
-    @Action(input = "http://services/WebServiceSvc/eliminarEmpresaRequest", output = "http://services/WebServiceSvc/eliminarEmpresaResponse")
-    public int eliminarEmpresa(
-        @WebParam(name = "idEmpresa", targetNamespace = "")
-        int idEmpresa);
-
-    /**
-     * 
-     * @param idUsuario
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "eliminarUsuario", targetNamespace = "http://services/", className = "model.EliminarUsuario")
-    @ResponseWrapper(localName = "eliminarUsuarioResponse", targetNamespace = "http://services/", className = "model.EliminarUsuarioResponse")
-    @Action(input = "http://services/WebServiceSvc/eliminarUsuarioRequest", output = "http://services/WebServiceSvc/eliminarUsuarioResponse")
-    public int eliminarUsuario(
-        @WebParam(name = "idUsuario", targetNamespace = "")
-        int idUsuario);
+    @RequestWrapper(localName = "listarTareas", targetNamespace = "http://services/", className = "model.ListarTareas")
+    @ResponseWrapper(localName = "listarTareasResponse", targetNamespace = "http://services/", className = "model.ListarTareasResponse")
+    @Action(input = "http://services/WebServiceSvc/listarTareasRequest", output = "http://services/WebServiceSvc/listarTareasResponse", fault = {
+        @FaultAction(className = ParseException_Exception.class, value = "http://services/WebServiceSvc/listarTareas/Fault/ParseException")
+    })
+    public List<Tarea> listarTareas()
+        throws ParseException_Exception
+    ;
 
 }

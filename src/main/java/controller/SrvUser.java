@@ -28,24 +28,7 @@ public class SrvUser extends HttpServlet {
             throws ServletException, IOException, ParseException_Exception {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String email,password,respuesta;
             RequestDispatcher rd = null;
-            email = request.getParameter("txtEmail").toString();
-            password = request.getParameter("txtPassword").toString();
-            Usuario u = new Usuario();
-            WebServiceSvc_Service webServiceSvc = new WebServiceSvc_Service();
-            u=webServiceSvc.getWebServiceSvcPort().autenticarUsuario(email, password);
-            
-            if (u.getEmail()== null || u.getEmail().isEmpty()) {
-                respuesta = "False";
-                System.out.println("entraaaa f");
-            } else {
-                respuesta = "True";
-                System.out.println("wntraaa v");
-                System.out.println(u.getEmail());
-            }
-            request.setAttribute("usuario", u);
-            request.setAttribute("respuesta", respuesta);
             rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);
         }
@@ -82,6 +65,20 @@ public class SrvUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            String email, password, respuesta;
+            email = request.getParameter("txtEmail").toString();
+            password = request.getParameter("txtPassword").toString();
+            Usuario u = new Usuario();
+            WebServiceSvc_Service webServiceSvc = new WebServiceSvc_Service();
+            u = webServiceSvc.getWebServiceSvcPort().autenticarUsuario(email, password);
+
+            if (u.getEmail() == null || u.getEmail().isEmpty()) {
+                respuesta = "False";
+            } else {
+                respuesta = "True";
+            }
+            request.setAttribute("usuario", u);
+            request.setAttribute("respuesta", respuesta);
             processRequest(request, response);
         } catch (ParseException_Exception ex) {
             Logger.getLogger(SrvUser.class.getName()).log(Level.SEVERE, null, ex);

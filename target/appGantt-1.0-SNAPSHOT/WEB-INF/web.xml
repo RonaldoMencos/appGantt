@@ -4,9 +4,18 @@
         <servlet-name>SrvUser</servlet-name>
         <servlet-class>controller.SrvUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SrvActividad</servlet-name>
+        <servlet-class>controller.SrvActividad</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SrvUser</servlet-name>
-        <url-pattern>/SrvUser</url-pattern>
+        <url-pattern>/</url-pattern>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvActividad</servlet-name>
+        <url-pattern>/nuevaActividad</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

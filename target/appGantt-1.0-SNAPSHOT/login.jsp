@@ -19,7 +19,7 @@
                 </span>
 
                 <div class="card-body">
-                    <form name="frmUser" method="POST" action="SrvUser">
+                    <form name="frmUser" method="POST" action="login">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><span class="material-icons">
@@ -36,7 +36,7 @@
                             </div>
                             <input type="password" class="form-control" placeholder="Password" aria-label="Password" name="txtPassword">
                         </div>
-                        <button type="submit" class="btn btn-primary bk-primario btn-lg btn-block" name="btnIngresar">Iniciar Sesión</button>
+                        <button type="submit" class="btn btn-danger bk-primario btn-lg btn-block" name="btnIngresar">Iniciar Sesión</button>
                     </form>
                 </div>
             </div>

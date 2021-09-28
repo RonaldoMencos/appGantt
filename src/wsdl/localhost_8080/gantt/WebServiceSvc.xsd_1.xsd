@@ -14,6 +14,10 @@
 
 <xs:element name="actualizarProyectoResponse" type="tns:actualizarProyectoResponse"/>
 
+<xs:element name="actualizarTarea" type="tns:actualizarTarea"/>
+
+<xs:element name="actualizarTareaResponse" type="tns:actualizarTareaResponse"/>
+
 <xs:element name="actualizarUsuario" type="tns:actualizarUsuario"/>
 
 <xs:element name="actualizarUsuarioResponse" type="tns:actualizarUsuarioResponse"/>
@@ -34,6 +38,10 @@
 
 <xs:element name="eliminarProyectoResponse" type="tns:eliminarProyectoResponse"/>
 
+<xs:element name="eliminarTarea" type="tns:eliminarTarea"/>
+
+<xs:element name="eliminarTareaResponse" type="tns:eliminarTareaResponse"/>
+
 <xs:element name="eliminarUsuario" type="tns:eliminarUsuario"/>
 
 <xs:element name="eliminarUsuarioResponse" type="tns:eliminarUsuarioResponse"/>
@@ -50,6 +58,10 @@
 
 <xs:element name="insertarProyectoResponse" type="tns:insertarProyectoResponse"/>
 
+<xs:element name="insertarTarea" type="tns:insertarTarea"/>
+
+<xs:element name="insertarTareaResponse" type="tns:insertarTareaResponse"/>
+
 <xs:element name="insertarUsuario" type="tns:insertarUsuario"/>
 
 <xs:element name="insertarUsuarioResponse" type="tns:insertarUsuarioResponse"/>
@@ -62,6 +74,30 @@
 
 <xs:element name="listarActividadesResponse" type="tns:listarActividadesResponse"/>
 
+<xs:element name="listarEmpresaPorId" type="tns:listarEmpresaPorId"/>
+
+<xs:element name="listarEmpresaPorIdResponse" type="tns:listarEmpresaPorIdResponse"/>
+
+<xs:element name="listarEmpresas" type="tns:listarEmpresas"/>
+
+<xs:element name="listarEmpresasResponse" type="tns:listarEmpresasResponse"/>
+
+<xs:element name="listarProyectoPorId" type="tns:listarProyectoPorId"/>
+
+<xs:element name="listarProyectoPorIdResponse" type="tns:listarProyectoPorIdResponse"/>
+
+<xs:element name="listarProyectos" type="tns:listarProyectos"/>
+
+<xs:element name="listarProyectosResponse" type="tns:listarProyectosResponse"/>
+
+<xs:element name="listarTareaPorId" type="tns:listarTareaPorId"/>
+
+<xs:element name="listarTareaPorIdResponse" type="tns:listarTareaPorIdResponse"/>
+
+<xs:element name="listarTareas" type="tns:listarTareas"/>
+
+<xs:element name="listarTareasResponse" type="tns:listarTareasResponse"/>
+
 <xs:element name="listarUsuarioPorId" type="tns:listarUsuarioPorId"/>
 
 <xs:element name="listarUsuarioPorIdResponse" type="tns:listarUsuarioPorIdResponse"/>
@@ -69,21 +105,6 @@
 <xs:element name="listarUsuarios" type="tns:listarUsuarios"/>
 
 <xs:element name="listarUsuariosResponse" type="tns:listarUsuariosResponse"/>
-
-<xs:complexType name="insertarUsuario">
-<xs:sequence>
-<xs:element name="nombre" type="xs:string" minOccurs="0"/>
-<xs:element name="apellido" type="xs:string" minOccurs="0"/>
-<xs:element name="email" type="xs:string" minOccurs="0"/>
-<xs:element name="password" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="insertarUsuarioResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
 
 <xs:complexType name="actualizarActividad">
 <xs:sequence>
@@ -129,22 +150,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="insertarActividad">
-<xs:sequence>
-<xs:element name="titulo" type="xs:string" minOccurs="0"/>
-<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
-<xs:element name="fechaInicio" type="xs:string" minOccurs="0"/>
-<xs:element name="fechaFin" type="xs:string" minOccurs="0"/>
-<xs:element name="tarea" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="insertarActividadResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="insertarProyecto">
 <xs:sequence>
 <xs:element name="titulo" type="xs:string" minOccurs="0"/>
@@ -180,6 +185,199 @@
 </xs:complexType>
 
 <xs:complexType name="eliminarActividadResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarActividadPorId">
+<xs:sequence>
+<xs:element name="idActividad" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarActividadPorIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:actividad" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="actividad">
+<xs:complexContent>
+<xs:extension base="tns:datosGenerales">
+<xs:sequence>
+<xs:element name="idActividad" type="xs:int"/>
+<xs:element name="tarea" type="xs:int"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="datosGenerales">
+<xs:sequence>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaFin" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fechaInicio" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="titulo" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarTareaPorId">
+<xs:sequence>
+<xs:element name="idTarea" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarTareaPorIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:tarea" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tarea">
+<xs:complexContent>
+<xs:extension base="tns:datosGenerales">
+<xs:sequence>
+<xs:element name="idTarea" type="xs:int"/>
+<xs:element name="proyecto" type="xs:int"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="listarProyectos">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listarProyectosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:proyecto" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="proyecto">
+<xs:complexContent>
+<xs:extension base="tns:datosGenerales">
+<xs:sequence>
+<xs:element name="empresa" type="xs:int"/>
+<xs:element name="idProyecto" type="xs:int"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="insertarEmpresa">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="direccion" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="telefono" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarEmpresaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarActividades">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listarActividadesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:actividad" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="actualizarTarea">
+<xs:sequence>
+<xs:element name="titulo" type="xs:string" minOccurs="0"/>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaInicio" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaFin" type="xs:string" minOccurs="0"/>
+<xs:element name="proyecto" type="xs:int"/>
+<xs:element name="idTarea" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="actualizarTareaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarUsuario">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarTarea">
+<xs:sequence>
+<xs:element name="idTarea" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarTareaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarTareas">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listarTareasResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:tarea" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarEmpresaPorId">
+<xs:sequence>
+<xs:element name="idEmpresa" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarEmpresaPorIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empresa" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="empresa">
+<xs:sequence>
+<xs:element name="direccion" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="idEmpresa" type="xs:int"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="telefono" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarActividad">
+<xs:sequence>
+<xs:element name="titulo" type="xs:string" minOccurs="0"/>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaInicio" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaFin" type="xs:string" minOccurs="0"/>
+<xs:element name="tarea" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertarActividadResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int"/>
 </xs:sequence>
@@ -238,35 +436,13 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="listarActividadPorId">
-<xs:sequence>
-<xs:element name="idActividad" type="xs:int"/>
-</xs:sequence>
+<xs:complexType name="listarEmpresas">
+<xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="listarActividadPorIdResponse">
+<xs:complexType name="listarEmpresasResponse">
 <xs:sequence>
-<xs:element name="return" type="tns:actividad" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="actividad">
-<xs:complexContent>
-<xs:extension base="tns:datosGenerales">
-<xs:sequence>
-<xs:element name="idActividad" type="xs:int"/>
-<xs:element name="tarea" type="xs:int"/>
-</xs:sequence>
-</xs:extension>
-</xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="datosGenerales">
-<xs:sequence>
-<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
-<xs:element name="fechaFin" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="fechaInicio" type="xs:dateTime" minOccurs="0"/>
-<xs:element name="titulo" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="tns:empresa" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -298,18 +474,31 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="insertarEmpresa">
+<xs:complexType name="insertarTarea">
 <xs:sequence>
-<xs:element name="nombre" type="xs:string" minOccurs="0"/>
-<xs:element name="direccion" type="xs:string" minOccurs="0"/>
-<xs:element name="email" type="xs:string" minOccurs="0"/>
-<xs:element name="telefono" type="xs:string" minOccurs="0"/>
+<xs:element name="titulo" type="xs:string" minOccurs="0"/>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaInicio" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaFin" type="xs:string" minOccurs="0"/>
+<xs:element name="proyecto" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="insertarEmpresaResponse">
+<xs:complexType name="insertarTareaResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarProyectoPorId">
+<xs:sequence>
+<xs:element name="idProyecto" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarProyectoPorIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:proyecto" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -327,16 +516,6 @@
 <xs:complexType name="actualizarProyectoResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="listarActividades">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="listarActividadesResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:actividad" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

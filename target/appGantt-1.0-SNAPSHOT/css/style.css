@@ -5,6 +5,19 @@
     background-color: #18305e !important;
 }
 
+.btn-primario{
+    background-color: #18305e !important;
+    color:white;
+    padding:.5rem;
+}
+
+.btn-primario:hover{
+    background-color: #305fb2 !important;
+    color:white;
+    padding:.5rem;
+    
+}
+
 @media (min-width: 768px) {
     .card-tamanio {
         width: 100%;
@@ -20,3 +33,8 @@
     }
 }
 
+.label_input {
+    font-size: 1.2rem !important;
+    color: #18305e !important;
+    font-weight: bold;
+}

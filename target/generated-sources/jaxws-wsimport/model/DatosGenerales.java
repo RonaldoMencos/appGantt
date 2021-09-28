@@ -39,7 +39,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "titulo"
 })
 @XmlSeeAlso({
-    Actividad.class
+    Actividad.class,
+    Tarea.class,
+    Proyecto.class
 })
 public class DatosGenerales {
 
