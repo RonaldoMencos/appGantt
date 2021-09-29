@@ -1,18 +1,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true"%>
-<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title>
+        <link href="css/icon.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/icon.css" rel="stylesheet" type="text/css">
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
 
-        <div class="container-md d-flex justify-content-center  h-100" style="margin-top: 10em;">
+        <div class="container-md d-flex justify-content-center" style="margin-top: 10em;">
             <div class="card" style="width: 25em">
                 <span class=" material-icons d-flex justify-content-center color-primario" style="font-size: 10rem;">
                     account_circle
