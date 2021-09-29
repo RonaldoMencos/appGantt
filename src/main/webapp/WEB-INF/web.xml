@@ -12,9 +12,11 @@
         <servlet-name>SrvUser</servlet-name>
         <url-pattern>/</url-pattern>
         <url-pattern>/login</url-pattern>
+        <url-pattern>/SrvUser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SrvActividad</servlet-name>
+        <url-pattern>/SrvActividad</url-pattern>
         <url-pattern>/nuevaActividad</url-pattern>
     </servlet-mapping>
     <session-config>
@@ -23,6 +25,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>login</welcome-file>
+        <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
