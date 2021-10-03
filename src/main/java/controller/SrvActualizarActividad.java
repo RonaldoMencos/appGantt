@@ -19,7 +19,13 @@ import model.ParseException_Exception;
 import model.Tarea;
 import model.WebServiceSvc_Service;
 
-public class SrvActividad extends HttpServlet {
+/**
+ *
+ * @author oscar
+ */
+public class SrvActualizarActividad extends HttpServlet {
+
+    private List<Tarea> listaTarea;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,18 +36,19 @@ public class SrvActividad extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private List<Tarea> listaTarea;
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException_Exception {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            RequestDispatcher rd = null;
-            WebServiceSvc_Service webServiceSvc = new WebServiceSvc_Service();
+        RequestDispatcher rd = null;
+        WebServiceSvc_Service webServiceSvc = new WebServiceSvc_Service();
+        try {
             listaTarea = webServiceSvc.getWebServiceSvcPort().listarTareas();
-            request.setAttribute("listaTarea", listaTarea);
-            rd = request.getRequestDispatcher("nuevaActividad.jsp");
-            rd.forward(request, response);
+        } catch (ParseException_Exception ex) {
+            Logger.getLogger(SrvActualizarActividad.class.getName()).log(Level.SEVERE, null, ex);
         }
+        request.setAttribute("listaTarea", listaTarea);
+        rd = request.getRequestDispatcher("actualizarActividad.jsp");
+        rd.forward(request, response);
 
     }
 
@@ -57,11 +64,8 @@ public class SrvActividad extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ParseException_Exception ex) {
-            Logger.getLogger(SrvActividad.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
+
     }
 
     /**
@@ -75,17 +79,20 @@ public class SrvActividad extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         try {
             WebServiceSvc_Service webServiceSvc = new WebServiceSvc_Service();
             String titulo, descripcion, fechaInicio, fechaFin;
-            int respuesta, tarea;
-
+            int respuesta, tarea, idActividad;
+            idActividad = Integer.parseInt(request.getParameter("idActividad").toString());
             titulo = request.getParameter("tituloActividad").toString();
             descripcion = request.getParameter("descripcionActividad").toString();
             fechaInicio = request.getParameter("fechaInicioActividad").toString();
             fechaFin = request.getParameter("fechaFinActividad").toString();
             tarea = Integer.parseInt(request.getParameter("tarea").toString());
-            respuesta = webServiceSvc.getWebServiceSvcPort().insertarActividad(titulo, descripcion, fechaInicio, fechaFin, tarea);
+            System.out.println(idActividad + "-" + titulo + "-" + descripcion);
+
+            respuesta = webServiceSvc.getWebServiceSvcPort().actualizarActividad(titulo, descripcion, fechaInicio, fechaFin, tarea, idActividad);
             request.setAttribute("respuesta", respuesta);
             processRequest(request, response);
 

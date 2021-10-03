@@ -8,6 +8,14 @@
         <servlet-name>SrvActividad</servlet-name>
         <servlet-class>controller.SrvActividad</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SrvMantenimientoActividad</servlet-name>
+        <servlet-class>controller.SrvMantenimientoActividad</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SrvActualizarActividad</servlet-name>
+        <servlet-class>controller.SrvActualizarActividad</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SrvUser</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -17,6 +25,16 @@
         <servlet-name>SrvActividad</servlet-name>
         <url-pattern>/SrvActividad</url-pattern>
         <url-pattern>/nuevaActividad</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvMantenimientoActividad</servlet-name>
+        <url-pattern>/SrvMantenimientoActividad</url-pattern>
+        <url-pattern>/mantenimientoActividad</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvActualizarActividad</servlet-name>
+        <url-pattern>/SrvActualizarActividad</url-pattern>
+        <url-pattern>/actualizarActividad</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

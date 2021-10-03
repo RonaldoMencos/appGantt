@@ -42,7 +42,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="nuevaActividad">Nueva Actividad</a>
-                            <a class="dropdown-item" href="#">Mantenimiento Actividad</a>
+                            <a class="dropdown-item" href="mantenimientoActividad">Mantenimiento Actividad</a>
                         </div>
                     </li>
 
