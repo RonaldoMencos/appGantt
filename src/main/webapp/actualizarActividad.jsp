@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.Actividad"%>
 <%@page import="model.WebServiceSvc_Service"%>
 <%@page import="model.Tarea"%>
@@ -16,10 +17,12 @@
 
         <%            Integer idActividad = null;
             Actividad a = new Actividad();
+            SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
             if (request.getParameter("id") != null) {
                 idActividad = Integer.parseInt(request.getParameter("id").toString());
                 WebServiceSvc_Service servicio = new WebServiceSvc_Service();
                 a = servicio.getWebServiceSvcPort().listarActividadPorId(idActividad);
+                
             }
         %>
         <form name="frmActualizarActividad" action="actualizarActividad?id=<%=a.getIdActividad() %>" method="POST">
@@ -44,11 +47,11 @@
                         </div>
                         <div class="form-group">
                             <label for="datepicker" class="label_input">Fecha Inicio Actividad</label>
-                            <input type="text" class="form-control" id="datepicker" name="fechaInicioActividad" required value="<%=a.getFechaInicio() %>">
+                            <input type="text" class="form-control" id="datepicker" name="fechaInicioActividad" required value="<%=f.format(a.getFechaInicio().toGregorianCalendar().getTime()) %>">
                         </div>
                         <div class="form-group">
                             <label for="datepicker2" class="label_input">Fecha Fin Actividad</label>
-                            <input type="text" class="form-control" id="datepicker2" name="fechaFinActividad" required value="<%=a.getFechaFin() %>">
+                            <input type="text" class="form-control" id="datepicker2" name="fechaFinActividad" required value="<%=f.format(a.getFechaFin().toGregorianCalendar().getTime()) %>">
                         </div> 
                         <div class="form-group">
                             <label for="idTarea" class="label_input">Tarea</label>

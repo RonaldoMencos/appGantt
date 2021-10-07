@@ -7,11 +7,14 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.ParseException_Exception;
 import model.WebServiceSvc_Service;
 
 /**
@@ -50,6 +53,18 @@ public class SrvMantenimientoActividad extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+           if (request.getParameter("eliminar") != null) {
+               try {
+                   int respuesta = 0;
+                   int idEliminar = Integer.parseInt(request.getParameter("eliminar").toString());
+                   WebServiceSvc_Service service = new WebServiceSvc_Service();
+                   respuesta =service.getWebServiceSvcPort().eliminarActividad(idEliminar);
+                   request.setAttribute("respuesta", respuesta);
+               } catch (ParseException_Exception ex) {
+                   Logger.getLogger(SrvMantenimientoActividad.class.getName()).log(Level.SEVERE, null, ex);
+               }
+            
+        }
         processRequest(request, response);
     }
 
