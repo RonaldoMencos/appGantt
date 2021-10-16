@@ -6,7 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +37,6 @@ public class SrvActualizarActividad extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher rd = null;
         WebServiceSvc_Service webServiceSvc = new WebServiceSvc_Service();
         try {
@@ -46,6 +44,7 @@ public class SrvActualizarActividad extends HttpServlet {
         } catch (ParseException_Exception ex) {
             Logger.getLogger(SrvActualizarActividad.class.getName()).log(Level.SEVERE, null, ex);
         }
+        request.setCharacterEncoding("iso-8859-1");
         request.setAttribute("listaTarea", listaTarea);
         rd = request.getRequestDispatcher("actualizarActividad.jsp");
         rd.forward(request, response);

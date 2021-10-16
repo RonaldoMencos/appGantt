@@ -7,19 +7,18 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ParseException_Exception;
-import model.Tarea;
 import model.WebServiceSvc_Service;
 
-public class SrvActividad extends HttpServlet {
+/**
+ *
+ * @author oscar
+ */
+public class SrvUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,16 +29,13 @@ public class SrvActividad extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private List<Tarea> listaTarea;
-
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException_Exception {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         try ( PrintWriter out = response.getWriter()) {
             RequestDispatcher rd = null;
             WebServiceSvc_Service webServiceSvc = new WebServiceSvc_Service();
-            listaTarea = webServiceSvc.getWebServiceSvcPort().listarTareas();
-            request.setAttribute("listaTarea", listaTarea);
             request.setCharacterEncoding("iso-8859-1");
-            rd = request.getRequestDispatcher("nuevaActividad.jsp");
+            rd = request.getRequestDispatcher("nuevoUsuario.jsp");
             rd.forward(request, response);
         }
 
@@ -57,12 +53,7 @@ public class SrvActividad extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            
-            processRequest(request, response);
-        } catch (ParseException_Exception ex) {
-            Logger.getLogger(SrvActividad.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -76,23 +67,17 @@ public class SrvActividad extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            WebServiceSvc_Service webServiceSvc = new WebServiceSvc_Service();
-            String titulo, descripcion, fechaInicio, fechaFin;
-            int respuesta, tarea;
-
-            titulo = request.getParameter("tituloActividad").toString();
-            descripcion = request.getParameter("descripcionActividad").toString();
-            fechaInicio = request.getParameter("fechaInicioActividad").toString();
-            fechaFin = request.getParameter("fechaFinActividad").toString();
-            tarea = Integer.parseInt(request.getParameter("tarea").toString());
-            respuesta = webServiceSvc.getWebServiceSvcPort().insertarActividad(titulo, descripcion, fechaInicio, fechaFin, tarea);
-            request.setAttribute("respuesta", respuesta);
-            processRequest(request, response);
-
-        } catch (ParseException_Exception ex) {
-            Logger.getLogger(SrvActividad.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        WebServiceSvc_Service webServiceSvc = new WebServiceSvc_Service();
+        String nombre, apellido, email, password;
+        int respuesta;
+        nombre = request.getParameter("txtnombre").toString();
+        apellido = request.getParameter("txtapellido").toString();
+        email = request.getParameter("txtemail").toString();
+        password = request.getParameter("txtpassword").toString();
+        respuesta = webServiceSvc.getWebServiceSvcPort().insertarUsuario(nombre, apellido, email, password);
+        request.setAttribute("respuesta", respuesta);
+        request.setCharacterEncoding("iso-8859-1");
+        processRequest(request, response);
     }
 
     /**

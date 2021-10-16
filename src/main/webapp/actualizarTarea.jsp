@@ -1,7 +1,7 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="model.Actividad"%>
-<%@page import="model.WebServiceSvc_Service"%>
+<%@page import="model.Proyecto"%>
 <%@page import="model.Tarea"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="model.WebServiceSvc_Service"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,60 +9,60 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>     
-        <title>Actualizar Actividad</title>
+        <title>Actualizar Tarea</title>
 
     </head>
     <body>
         <%@include file="menu.jsp" %>
 
-        <%            Integer idActividad = null;
-            Actividad a = new Actividad();
+        <%            Integer idTarea = null;
+            Tarea a = new Tarea();
             SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
             if (request.getParameter("id") != null) {
-                idActividad = Integer.parseInt(request.getParameter("id").toString());
+                idTarea = Integer.parseInt(request.getParameter("id").toString());
                 WebServiceSvc_Service servicio = new WebServiceSvc_Service();
-                a = servicio.getWebServiceSvcPort().listarActividadPorId(idActividad);
+                a = servicio.getWebServiceSvcPort().listarTareaPorId(idTarea);
                 
             }
         %>
-        <form name="frmActualizarActividad" action="actualizarActividad?id=<%=a.getIdActividad() %>" method="POST">
+        <form name="frmActualizarTarea" action="actualizarTarea?id=<%=a.getIdTarea() %>" method="POST">
             <div class="container-md d-flex justify-content-center  h-100" style="margin-top: 5em;">
                 <div class="card" style="width: 80rem;">
                     <div class="card-body">
-                        <h1 class="card-title text-center color-primario">Actualizar Actividad                             
+                        <h1 class="card-title text-center color-primario">Actualizar Tarea                             
                         </h1>
                     </div>
                     <div style="padding:2rem">
                         <div class="form-group">
-                            <label for="idActividad" class="label_input">Titulo Actividad</label>
-                            <input type="text" class="form-control" id="idActividad" name="idActividad" readonly value="<%=a.getIdActividad()%>"> 
+                            <label for="idTarea" class="label_input">Id Tarea</label>
+                            <input type="text" class="form-control" id="idTarea" name="txtidtarea" readonly value="<%=a.getIdTarea()%>"> 
                         </div>
                         <div class="form-group">
-                            <label for="tituloActividad" class="label_input">Titulo Actividad</label>
-                            <input type="text" class="form-control" id="tituloActividad" name="tituloActividad" required value="<%=a.getTitulo()%>">
+                            <label for="tituloTarea" class="label_input">Titulo Tarea</label>
+                            <input type="text" class="form-control" id="tituloTarea" name="txttitulo" required value="<%=a.getTitulo()%>">
                         </div> 
                         <div class="form-group">
-                            <label for="idDescripcionActividad" class="label_input">Descripción Actividad</label>
-                            <input type="text" class="form-control" id="idDescripcionActividad" name="descripcionActividad" required value="<%=a.getDescripcion() %>">
+                            <label for="idDescripcionTarea" class="label_input">Descripción Tarea</label>
+                            <input type="text" class="form-control" id="idDescripcionTarea" name="txtdescripcion" required value="<%=a.getDescripcion() %>">
                         </div>
                         <div class="form-group">
-                            <label for="datepicker" class="label_input">Fecha Inicio Actividad</label>
-                            <input type="text" class="form-control" id="datepicker" name="fechaInicioActividad" required value="<%=f.format(a.getFechaInicio().toGregorianCalendar().getTime()) %>">
+                            <label for="datepicker" class="label_input">Fecha Inicio Tarea</label>
+                            <input type="text" class="form-control" id="datepicker" name="txtfechainicio" required value="<%=f.format(a.getFechaInicio().toGregorianCalendar().getTime()) %>">
                         </div>
                         <div class="form-group">
-                            <label for="datepicker2" class="label_input">Fecha Fin Actividad</label>
-                            <input type="text" class="form-control" id="datepicker2" name="fechaFinActividad" required value="<%=f.format(a.getFechaFin().toGregorianCalendar().getTime()) %>">
+                            <label for="datepicker2" class="label_input">Fecha Fin Tarea</label>
+                            <input type="text" class="form-control" id="datepicker2" name="txtfechafin" required value="<%=f.format(a.getFechaFin().toGregorianCalendar().getTime()) %>">
                         </div> 
                         <div class="form-group">
-                            <label for="idTarea" class="label_input">Tarea</label>
-                            <%                                ArrayList<Tarea> listaTarea = (ArrayList<Tarea>) request.getAttribute("listaTarea");
-                                if (listaTarea != null) {
+                            <label for="idProyecto" class="label_input">Empresa</label>
+                            <%                                ArrayList<Proyecto> listaProyecto = (ArrayList<Proyecto>) request.getAttribute("listaProyecto");
+                                if (listaProyecto != null) {
                             %>  
-                            <select class="form-control" id="idTarea" name="tarea" >
+                            <select class="form-control" id="idTarea" name="txtproyecto" >
                                 <%
-                                    for (Tarea t : listaTarea) {
+                                    for (Proyecto e : listaProyecto) {
                                 %>
-                                <option value="<%=t.getIdTarea()%>"><%=t.getTitulo()%></option>
+                                <option value="<%=e.getIdProyecto()%>"><%=e.getTitulo()%></option>
                                 <%
                                     }
                                 %>

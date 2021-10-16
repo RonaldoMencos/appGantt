@@ -33,9 +33,45 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item ">
-                        <a class="nav-link" href="login.jsp">Inicio <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="menu.jsp">Inicio <span class="sr-only">(current)</span></a>
                     </li>
                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Usuario
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="nuevoUsuario">Nuevo Usuario</a>
+                            <a class="dropdown-item" href="mantenimientoUsuario">Mantenimiento Usuario</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Empresa
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="nuevaEmpresa">Nueva Empresa</a>
+                            <a class="dropdown-item" href="mantenimientoEmpresa">Mantenimiento Empresa</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Proyecto
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="nuevoProyecto">Nuevo Proyecto</a>
+                            <a class="dropdown-item" href="mantenimientoProyecto">Mantenimiento Proyecto</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tarea
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="nuevaTarea">Nueva Tarea</a>
+                            <a class="dropdown-item" href="mantenimientoTarea">Mantenimiento Tarea</a>
+                        </div>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Actividad
@@ -45,7 +81,6 @@
                             <a class="dropdown-item" href="mantenimientoActividad">Mantenimiento Actividad</a>
                         </div>
                     </li>
-
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <a href="login?cerrar=true"  class="btn btn-primary my-2 my-sm-0 d-flex justify-content-center align-content-between">

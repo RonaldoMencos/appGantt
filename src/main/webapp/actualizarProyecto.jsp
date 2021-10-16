@@ -1,7 +1,7 @@
+<%@page import="model.Empresa"%>
+<%@page import="model.Proyecto"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="model.Actividad"%>
 <%@page import="model.WebServiceSvc_Service"%>
-<%@page import="model.Tarea"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,60 +9,60 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>     
-        <title>Actualizar Actividad</title>
+        <title>Actualizar Proyecto</title>
 
     </head>
     <body>
         <%@include file="menu.jsp" %>
 
-        <%            Integer idActividad = null;
-            Actividad a = new Actividad();
+        <%            Integer idProyecto = null;
+            Proyecto a = new Proyecto();
             SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
             if (request.getParameter("id") != null) {
-                idActividad = Integer.parseInt(request.getParameter("id").toString());
+                idProyecto = Integer.parseInt(request.getParameter("id").toString());
                 WebServiceSvc_Service servicio = new WebServiceSvc_Service();
-                a = servicio.getWebServiceSvcPort().listarActividadPorId(idActividad);
+                a = servicio.getWebServiceSvcPort().listarProyectoPorId(idProyecto);
                 
             }
         %>
-        <form name="frmActualizarActividad" action="actualizarActividad?id=<%=a.getIdActividad() %>" method="POST">
+        <form name="frmActualizarProyecto" action="actualizarProyecto?id=<%=a.getIdProyecto() %>" method="POST">
             <div class="container-md d-flex justify-content-center  h-100" style="margin-top: 5em;">
                 <div class="card" style="width: 80rem;">
                     <div class="card-body">
-                        <h1 class="card-title text-center color-primario">Actualizar Actividad                             
+                        <h1 class="card-title text-center color-primario">Actualizar Proyecto                             
                         </h1>
                     </div>
                     <div style="padding:2rem">
                         <div class="form-group">
-                            <label for="idActividad" class="label_input">Titulo Actividad</label>
-                            <input type="text" class="form-control" id="idActividad" name="idActividad" readonly value="<%=a.getIdActividad()%>"> 
+                            <label for="idProyecto" class="label_input">Titulo Proyecto</label>
+                            <input type="text" class="form-control" id="idProyecto" name="txtidproyecto" readonly value="<%=a.getIdProyecto()%>"> 
                         </div>
                         <div class="form-group">
-                            <label for="tituloActividad" class="label_input">Titulo Actividad</label>
-                            <input type="text" class="form-control" id="tituloActividad" name="tituloActividad" required value="<%=a.getTitulo()%>">
+                            <label for="tituloProyecto" class="label_input">Titulo Proyecto</label>
+                            <input type="text" class="form-control" id="tituloProyecto" name="txttitulo" required value="<%=a.getTitulo()%>">
                         </div> 
                         <div class="form-group">
-                            <label for="idDescripcionActividad" class="label_input">Descripción Actividad</label>
-                            <input type="text" class="form-control" id="idDescripcionActividad" name="descripcionActividad" required value="<%=a.getDescripcion() %>">
+                            <label for="idDescripcionProyecto" class="label_input">Descripción Proyecto</label>
+                            <input type="text" class="form-control" id="idDescripcionProyecto" name="txtdescripcion" required value="<%=a.getDescripcion() %>">
                         </div>
                         <div class="form-group">
-                            <label for="datepicker" class="label_input">Fecha Inicio Actividad</label>
-                            <input type="text" class="form-control" id="datepicker" name="fechaInicioActividad" required value="<%=f.format(a.getFechaInicio().toGregorianCalendar().getTime()) %>">
+                            <label for="datepicker" class="label_input">Fecha Inicio Proyecto</label>
+                            <input type="text" class="form-control" id="datepicker" name="txtfechainicio" required value="<%=f.format(a.getFechaInicio().toGregorianCalendar().getTime()) %>">
                         </div>
                         <div class="form-group">
-                            <label for="datepicker2" class="label_input">Fecha Fin Actividad</label>
-                            <input type="text" class="form-control" id="datepicker2" name="fechaFinActividad" required value="<%=f.format(a.getFechaFin().toGregorianCalendar().getTime()) %>">
+                            <label for="datepicker2" class="label_input">Fecha Fin Proyecto</label>
+                            <input type="text" class="form-control" id="datepicker2" name="txtfechafin" required value="<%=f.format(a.getFechaFin().toGregorianCalendar().getTime()) %>">
                         </div> 
                         <div class="form-group">
-                            <label for="idTarea" class="label_input">Tarea</label>
-                            <%                                ArrayList<Tarea> listaTarea = (ArrayList<Tarea>) request.getAttribute("listaTarea");
-                                if (listaTarea != null) {
+                            <label for="idEmpresa" class="label_input">Empresa</label>
+                            <%                                ArrayList<Empresa> listaEmpresa = (ArrayList<Empresa>) request.getAttribute("listaEmpresa");
+                                if (listaEmpresa != null) {
                             %>  
-                            <select class="form-control" id="idTarea" name="tarea" >
+                            <select class="form-control" id="idTarea" name="txtempresa" >
                                 <%
-                                    for (Tarea t : listaTarea) {
+                                    for (Empresa e : listaEmpresa) {
                                 %>
-                                <option value="<%=t.getIdTarea()%>"><%=t.getTitulo()%></option>
+                                <option value="<%=e.getIdEmpresa()%>"><%=e.getNombre()%></option>
                                 <%
                                     }
                                 %>

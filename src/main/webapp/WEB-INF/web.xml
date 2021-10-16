@@ -16,6 +16,54 @@
         <servlet-name>SrvActualizarActividad</servlet-name>
         <servlet-class>controller.SrvActualizarActividad</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SrvUsuario</servlet-name>
+        <servlet-class>controller.SrvUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SrvMantenimientoUsuario</servlet-name>
+        <servlet-class>controller.SrvMantenimientoUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SrvActualizarUsuario</servlet-name>
+        <servlet-class>controller.SrvActualizarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SrvEmpresa</servlet-name>
+        <servlet-class>controller.SrvEmpresa</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SrvMantenimientoEmpresa</servlet-name>
+        <servlet-class>controller.SrvMantenimientoEmpresa</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SrvActualizarEmpresa</servlet-name>
+        <servlet-class>controller.SrvActualizarEmpresa</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SrvProyecto</servlet-name>
+        <servlet-class>controller.SrvProyecto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SrvMantenimientoProyecto</servlet-name>
+        <servlet-class>controller.SrvMantenimientoProyecto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SrvActualizarProyecto</servlet-name>
+        <servlet-class>controller.SrvActualizarProyecto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SrvTarea</servlet-name>
+        <servlet-class>controller.SrvTarea</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SrvMantenimientoTarea</servlet-name>
+        <servlet-class>controller.SrvMantenimientoTarea</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SrvActualizarTarea</servlet-name>
+        <servlet-class>controller.SrvActualizarTarea</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SrvUser</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -35,6 +83,66 @@
         <servlet-name>SrvActualizarActividad</servlet-name>
         <url-pattern>/SrvActualizarActividad</url-pattern>
         <url-pattern>/actualizarActividad</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvUsuario</servlet-name>
+        <url-pattern>/SrvUsuario</url-pattern>
+        <url-pattern>/nuevoUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvMantenimientoUsuario</servlet-name>
+        <url-pattern>/SrvMantenimientoUsuario</url-pattern>
+        <url-pattern>/mantenimientoUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvActualizarUsuario</servlet-name>
+        <url-pattern>/SrvActualizarUsuario</url-pattern>
+        <url-pattern>/actualizarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvMantenimientoEmpresa</servlet-name>
+        <url-pattern>/SrvMantenimientoEmpresa</url-pattern>
+        <url-pattern>/mantenimientoEmpresa</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvEmpresa</servlet-name>
+        <url-pattern>/SrvEmpresa</url-pattern>
+        <url-pattern>/nuevaEmpresa</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvActualizarEmpresa</servlet-name>
+        <url-pattern>/SrvActualizarEmpresa</url-pattern>
+        <url-pattern>/actualizarEmpresa</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvProyecto</servlet-name>
+        <url-pattern>/SrvProyecto</url-pattern>
+        <url-pattern>/nuevoProyecto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvMantenimientoProyecto</servlet-name>
+        <url-pattern>/SrvMantenimientoProyecto</url-pattern>
+        <url-pattern>/mantenimientoProyecto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvActualizarProyecto</servlet-name>
+        <url-pattern>/SrvActualizarProyecto</url-pattern>
+        <url-pattern>/actualizarProyecto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvTarea</servlet-name>
+        <url-pattern>/SrvTarea</url-pattern>
+        <url-pattern>/nuevaTarea</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvMantenimientoTarea</servlet-name>
+        <url-pattern>/SrvMantenimientoTarea</url-pattern>
+        <url-pattern>/mantenimientoTarea</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SrvActualizarTarea</servlet-name>
+        <url-pattern>/SrvActualizarTarea</url-pattern>
+        <url-pattern>/actualizarTarea</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
