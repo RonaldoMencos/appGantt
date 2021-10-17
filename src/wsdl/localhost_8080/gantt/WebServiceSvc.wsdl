@@ -4,20 +4,38 @@
 <xsd:import namespace="http://services/" schemaLocation="http://localhost:8080/gantt/WebServiceSvc?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="listarActividadesPorTarea">
+<part name="parameters" element="tns:listarActividadesPorTarea"/>
+</message>
+<message name="listarActividadesPorTareaResponse">
+<part name="parameters" element="tns:listarActividadesPorTareaResponse"/>
+</message>
+<message name="ParseException">
+<part name="fault" element="tns:ParseException"/>
+</message>
+<message name="insertarActividad">
+<part name="parameters" element="tns:insertarActividad"/>
+</message>
+<message name="insertarActividadResponse">
+<part name="parameters" element="tns:insertarActividadResponse"/>
+</message>
+<message name="autenticarUsuario">
+<part name="parameters" element="tns:autenticarUsuario"/>
+</message>
+<message name="autenticarUsuarioResponse">
+<part name="parameters" element="tns:autenticarUsuarioResponse"/>
+</message>
 <message name="actualizarActividad">
 <part name="parameters" element="tns:actualizarActividad"/>
 </message>
 <message name="actualizarActividadResponse">
 <part name="parameters" element="tns:actualizarActividadResponse"/>
 </message>
-<message name="ParseException">
-<part name="fault" element="tns:ParseException"/>
+<message name="listarActividadPorId">
+<part name="parameters" element="tns:listarActividadPorId"/>
 </message>
-<message name="listarUsuarioPorId">
-<part name="parameters" element="tns:listarUsuarioPorId"/>
-</message>
-<message name="listarUsuarioPorIdResponse">
-<part name="parameters" element="tns:listarUsuarioPorIdResponse"/>
+<message name="listarActividadPorIdResponse">
+<part name="parameters" element="tns:listarActividadPorIdResponse"/>
 </message>
 <message name="listarEmpresaPorId">
 <part name="parameters" element="tns:listarEmpresaPorId"/>
@@ -31,23 +49,17 @@
 <message name="actualizarProyectoResponse">
 <part name="parameters" element="tns:actualizarProyectoResponse"/>
 </message>
-<message name="eliminarActividad">
-<part name="parameters" element="tns:eliminarActividad"/>
+<message name="listarProyectoPorId">
+<part name="parameters" element="tns:listarProyectoPorId"/>
 </message>
-<message name="eliminarActividadResponse">
-<part name="parameters" element="tns:eliminarActividadResponse"/>
+<message name="listarProyectoPorIdResponse">
+<part name="parameters" element="tns:listarProyectoPorIdResponse"/>
 </message>
-<message name="listarActividadPorId">
-<part name="parameters" element="tns:listarActividadPorId"/>
+<message name="listarUsuarioPorId">
+<part name="parameters" element="tns:listarUsuarioPorId"/>
 </message>
-<message name="listarActividadPorIdResponse">
-<part name="parameters" element="tns:listarActividadPorIdResponse"/>
-</message>
-<message name="insertarActividad">
-<part name="parameters" element="tns:insertarActividad"/>
-</message>
-<message name="insertarActividadResponse">
-<part name="parameters" element="tns:insertarActividadResponse"/>
+<message name="listarUsuarioPorIdResponse">
+<part name="parameters" element="tns:listarUsuarioPorIdResponse"/>
 </message>
 <message name="actualizarUsuario">
 <part name="parameters" element="tns:actualizarUsuario"/>
@@ -55,11 +67,11 @@
 <message name="actualizarUsuarioResponse">
 <part name="parameters" element="tns:actualizarUsuarioResponse"/>
 </message>
-<message name="autenticarUsuario">
-<part name="parameters" element="tns:autenticarUsuario"/>
+<message name="listarActividades">
+<part name="parameters" element="tns:listarActividades"/>
 </message>
-<message name="autenticarUsuarioResponse">
-<part name="parameters" element="tns:autenticarUsuarioResponse"/>
+<message name="listarActividadesResponse">
+<part name="parameters" element="tns:listarActividadesResponse"/>
 </message>
 <message name="actualizarEmpresa">
 <part name="parameters" element="tns:actualizarEmpresa"/>
@@ -67,17 +79,17 @@
 <message name="actualizarEmpresaResponse">
 <part name="parameters" element="tns:actualizarEmpresaResponse"/>
 </message>
-<message name="listarActividades">
-<part name="parameters" element="tns:listarActividades"/>
+<message name="eliminarActividad">
+<part name="parameters" element="tns:eliminarActividad"/>
 </message>
-<message name="listarActividadesResponse">
-<part name="parameters" element="tns:listarActividadesResponse"/>
+<message name="eliminarActividadResponse">
+<part name="parameters" element="tns:eliminarActividadResponse"/>
 </message>
-<message name="listarProyectoPorId">
-<part name="parameters" element="tns:listarProyectoPorId"/>
+<message name="insertarUsuario">
+<part name="parameters" element="tns:insertarUsuario"/>
 </message>
-<message name="listarProyectoPorIdResponse">
-<part name="parameters" element="tns:listarProyectoPorIdResponse"/>
+<message name="insertarUsuarioResponse">
+<part name="parameters" element="tns:insertarUsuarioResponse"/>
 </message>
 <message name="eliminarUsuario">
 <part name="parameters" element="tns:eliminarUsuario"/>
@@ -85,17 +97,41 @@
 <message name="eliminarUsuarioResponse">
 <part name="parameters" element="tns:eliminarUsuarioResponse"/>
 </message>
+<message name="listarUsuarios">
+<part name="parameters" element="tns:listarUsuarios"/>
+</message>
+<message name="listarUsuariosResponse">
+<part name="parameters" element="tns:listarUsuariosResponse"/>
+</message>
 <message name="insertarEmpresa">
 <part name="parameters" element="tns:insertarEmpresa"/>
 </message>
 <message name="insertarEmpresaResponse">
 <part name="parameters" element="tns:insertarEmpresaResponse"/>
 </message>
+<message name="eliminarEmpresa">
+<part name="parameters" element="tns:eliminarEmpresa"/>
+</message>
+<message name="eliminarEmpresaResponse">
+<part name="parameters" element="tns:eliminarEmpresaResponse"/>
+</message>
+<message name="insertarProyecto">
+<part name="parameters" element="tns:insertarProyecto"/>
+</message>
+<message name="insertarProyectoResponse">
+<part name="parameters" element="tns:insertarProyectoResponse"/>
+</message>
 <message name="listarEmpresas">
 <part name="parameters" element="tns:listarEmpresas"/>
 </message>
 <message name="listarEmpresasResponse">
 <part name="parameters" element="tns:listarEmpresasResponse"/>
+</message>
+<message name="eliminarProyecto">
+<part name="parameters" element="tns:eliminarProyecto"/>
+</message>
+<message name="eliminarProyectoResponse">
+<part name="parameters" element="tns:eliminarProyectoResponse"/>
 </message>
 <message name="insertarTarea">
 <part name="parameters" element="tns:insertarTarea"/>
@@ -115,47 +151,11 @@
 <message name="listarProyectosResponse">
 <part name="parameters" element="tns:listarProyectosResponse"/>
 </message>
-<message name="eliminarTarea">
-<part name="parameters" element="tns:eliminarTarea"/>
-</message>
-<message name="eliminarTareaResponse">
-<part name="parameters" element="tns:eliminarTareaResponse"/>
-</message>
 <message name="listarTareaPorId">
 <part name="parameters" element="tns:listarTareaPorId"/>
 </message>
 <message name="listarTareaPorIdResponse">
 <part name="parameters" element="tns:listarTareaPorIdResponse"/>
-</message>
-<message name="listarUsuarios">
-<part name="parameters" element="tns:listarUsuarios"/>
-</message>
-<message name="listarUsuariosResponse">
-<part name="parameters" element="tns:listarUsuariosResponse"/>
-</message>
-<message name="insertarUsuario">
-<part name="parameters" element="tns:insertarUsuario"/>
-</message>
-<message name="insertarUsuarioResponse">
-<part name="parameters" element="tns:insertarUsuarioResponse"/>
-</message>
-<message name="eliminarEmpresa">
-<part name="parameters" element="tns:eliminarEmpresa"/>
-</message>
-<message name="eliminarEmpresaResponse">
-<part name="parameters" element="tns:eliminarEmpresaResponse"/>
-</message>
-<message name="eliminarProyecto">
-<part name="parameters" element="tns:eliminarProyecto"/>
-</message>
-<message name="eliminarProyectoResponse">
-<part name="parameters" element="tns:eliminarProyectoResponse"/>
-</message>
-<message name="insertarProyecto">
-<part name="parameters" element="tns:insertarProyecto"/>
-</message>
-<message name="insertarProyectoResponse">
-<part name="parameters" element="tns:insertarProyectoResponse"/>
 </message>
 <message name="listarTareas">
 <part name="parameters" element="tns:listarTareas"/>
@@ -163,16 +163,43 @@
 <message name="listarTareasResponse">
 <part name="parameters" element="tns:listarTareasResponse"/>
 </message>
+<message name="eliminarTarea">
+<part name="parameters" element="tns:eliminarTarea"/>
+</message>
+<message name="eliminarTareaResponse">
+<part name="parameters" element="tns:eliminarTareaResponse"/>
+</message>
+<message name="listarTareasPorProyecto">
+<part name="parameters" element="tns:listarTareasPorProyecto"/>
+</message>
+<message name="listarTareasPorProyectoResponse">
+<part name="parameters" element="tns:listarTareasPorProyectoResponse"/>
+</message>
 <portType name="WebServiceSvc">
+<operation name="listarActividadesPorTarea">
+<input wsam:Action="http://services/WebServiceSvc/listarActividadesPorTareaRequest" message="tns:listarActividadesPorTarea"/>
+<output wsam:Action="http://services/WebServiceSvc/listarActividadesPorTareaResponse" message="tns:listarActividadesPorTareaResponse"/>
+<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarActividadesPorTarea/Fault/ParseException"/>
+</operation>
+<operation name="insertarActividad">
+<input wsam:Action="http://services/WebServiceSvc/insertarActividadRequest" message="tns:insertarActividad"/>
+<output wsam:Action="http://services/WebServiceSvc/insertarActividadResponse" message="tns:insertarActividadResponse"/>
+<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/insertarActividad/Fault/ParseException"/>
+</operation>
+<operation name="autenticarUsuario">
+<input wsam:Action="http://services/WebServiceSvc/autenticarUsuarioRequest" message="tns:autenticarUsuario"/>
+<output wsam:Action="http://services/WebServiceSvc/autenticarUsuarioResponse" message="tns:autenticarUsuarioResponse"/>
+<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/autenticarUsuario/Fault/ParseException"/>
+</operation>
 <operation name="actualizarActividad">
 <input wsam:Action="http://services/WebServiceSvc/actualizarActividadRequest" message="tns:actualizarActividad"/>
 <output wsam:Action="http://services/WebServiceSvc/actualizarActividadResponse" message="tns:actualizarActividadResponse"/>
 <fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/actualizarActividad/Fault/ParseException"/>
 </operation>
-<operation name="listarUsuarioPorId">
-<input wsam:Action="http://services/WebServiceSvc/listarUsuarioPorIdRequest" message="tns:listarUsuarioPorId"/>
-<output wsam:Action="http://services/WebServiceSvc/listarUsuarioPorIdResponse" message="tns:listarUsuarioPorIdResponse"/>
-<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarUsuarioPorId/Fault/ParseException"/>
+<operation name="listarActividadPorId">
+<input wsam:Action="http://services/WebServiceSvc/listarActividadPorIdRequest" message="tns:listarActividadPorId"/>
+<output wsam:Action="http://services/WebServiceSvc/listarActividadPorIdResponse" message="tns:listarActividadPorIdResponse"/>
+<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarActividadPorId/Fault/ParseException"/>
 </operation>
 <operation name="listarEmpresaPorId">
 <input wsam:Action="http://services/WebServiceSvc/listarEmpresaPorIdRequest" message="tns:listarEmpresaPorId"/>
@@ -184,56 +211,68 @@
 <output wsam:Action="http://services/WebServiceSvc/actualizarProyectoResponse" message="tns:actualizarProyectoResponse"/>
 <fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/actualizarProyecto/Fault/ParseException"/>
 </operation>
-<operation name="eliminarActividad">
-<input wsam:Action="http://services/WebServiceSvc/eliminarActividadRequest" message="tns:eliminarActividad"/>
-<output wsam:Action="http://services/WebServiceSvc/eliminarActividadResponse" message="tns:eliminarActividadResponse"/>
-<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/eliminarActividad/Fault/ParseException"/>
+<operation name="listarProyectoPorId">
+<input wsam:Action="http://services/WebServiceSvc/listarProyectoPorIdRequest" message="tns:listarProyectoPorId"/>
+<output wsam:Action="http://services/WebServiceSvc/listarProyectoPorIdResponse" message="tns:listarProyectoPorIdResponse"/>
+<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarProyectoPorId/Fault/ParseException"/>
 </operation>
-<operation name="listarActividadPorId">
-<input wsam:Action="http://services/WebServiceSvc/listarActividadPorIdRequest" message="tns:listarActividadPorId"/>
-<output wsam:Action="http://services/WebServiceSvc/listarActividadPorIdResponse" message="tns:listarActividadPorIdResponse"/>
-<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarActividadPorId/Fault/ParseException"/>
-</operation>
-<operation name="insertarActividad">
-<input wsam:Action="http://services/WebServiceSvc/insertarActividadRequest" message="tns:insertarActividad"/>
-<output wsam:Action="http://services/WebServiceSvc/insertarActividadResponse" message="tns:insertarActividadResponse"/>
-<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/insertarActividad/Fault/ParseException"/>
+<operation name="listarUsuarioPorId">
+<input wsam:Action="http://services/WebServiceSvc/listarUsuarioPorIdRequest" message="tns:listarUsuarioPorId"/>
+<output wsam:Action="http://services/WebServiceSvc/listarUsuarioPorIdResponse" message="tns:listarUsuarioPorIdResponse"/>
+<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarUsuarioPorId/Fault/ParseException"/>
 </operation>
 <operation name="actualizarUsuario">
 <input wsam:Action="http://services/WebServiceSvc/actualizarUsuarioRequest" message="tns:actualizarUsuario"/>
 <output wsam:Action="http://services/WebServiceSvc/actualizarUsuarioResponse" message="tns:actualizarUsuarioResponse"/>
-</operation>
-<operation name="autenticarUsuario">
-<input wsam:Action="http://services/WebServiceSvc/autenticarUsuarioRequest" message="tns:autenticarUsuario"/>
-<output wsam:Action="http://services/WebServiceSvc/autenticarUsuarioResponse" message="tns:autenticarUsuarioResponse"/>
-<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/autenticarUsuario/Fault/ParseException"/>
-</operation>
-<operation name="actualizarEmpresa">
-<input wsam:Action="http://services/WebServiceSvc/actualizarEmpresaRequest" message="tns:actualizarEmpresa"/>
-<output wsam:Action="http://services/WebServiceSvc/actualizarEmpresaResponse" message="tns:actualizarEmpresaResponse"/>
 </operation>
 <operation name="listarActividades">
 <input wsam:Action="http://services/WebServiceSvc/listarActividadesRequest" message="tns:listarActividades"/>
 <output wsam:Action="http://services/WebServiceSvc/listarActividadesResponse" message="tns:listarActividadesResponse"/>
 <fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarActividades/Fault/ParseException"/>
 </operation>
-<operation name="listarProyectoPorId">
-<input wsam:Action="http://services/WebServiceSvc/listarProyectoPorIdRequest" message="tns:listarProyectoPorId"/>
-<output wsam:Action="http://services/WebServiceSvc/listarProyectoPorIdResponse" message="tns:listarProyectoPorIdResponse"/>
-<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarProyectoPorId/Fault/ParseException"/>
+<operation name="actualizarEmpresa">
+<input wsam:Action="http://services/WebServiceSvc/actualizarEmpresaRequest" message="tns:actualizarEmpresa"/>
+<output wsam:Action="http://services/WebServiceSvc/actualizarEmpresaResponse" message="tns:actualizarEmpresaResponse"/>
+</operation>
+<operation name="eliminarActividad">
+<input wsam:Action="http://services/WebServiceSvc/eliminarActividadRequest" message="tns:eliminarActividad"/>
+<output wsam:Action="http://services/WebServiceSvc/eliminarActividadResponse" message="tns:eliminarActividadResponse"/>
+<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/eliminarActividad/Fault/ParseException"/>
+</operation>
+<operation name="insertarUsuario">
+<input wsam:Action="http://services/WebServiceSvc/insertarUsuarioRequest" message="tns:insertarUsuario"/>
+<output wsam:Action="http://services/WebServiceSvc/insertarUsuarioResponse" message="tns:insertarUsuarioResponse"/>
 </operation>
 <operation name="eliminarUsuario">
 <input wsam:Action="http://services/WebServiceSvc/eliminarUsuarioRequest" message="tns:eliminarUsuario"/>
 <output wsam:Action="http://services/WebServiceSvc/eliminarUsuarioResponse" message="tns:eliminarUsuarioResponse"/>
 </operation>
+<operation name="listarUsuarios">
+<input wsam:Action="http://services/WebServiceSvc/listarUsuariosRequest" message="tns:listarUsuarios"/>
+<output wsam:Action="http://services/WebServiceSvc/listarUsuariosResponse" message="tns:listarUsuariosResponse"/>
+<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarUsuarios/Fault/ParseException"/>
+</operation>
 <operation name="insertarEmpresa">
 <input wsam:Action="http://services/WebServiceSvc/insertarEmpresaRequest" message="tns:insertarEmpresa"/>
 <output wsam:Action="http://services/WebServiceSvc/insertarEmpresaResponse" message="tns:insertarEmpresaResponse"/>
+</operation>
+<operation name="eliminarEmpresa">
+<input wsam:Action="http://services/WebServiceSvc/eliminarEmpresaRequest" message="tns:eliminarEmpresa"/>
+<output wsam:Action="http://services/WebServiceSvc/eliminarEmpresaResponse" message="tns:eliminarEmpresaResponse"/>
+</operation>
+<operation name="insertarProyecto">
+<input wsam:Action="http://services/WebServiceSvc/insertarProyectoRequest" message="tns:insertarProyecto"/>
+<output wsam:Action="http://services/WebServiceSvc/insertarProyectoResponse" message="tns:insertarProyectoResponse"/>
+<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/insertarProyecto/Fault/ParseException"/>
 </operation>
 <operation name="listarEmpresas">
 <input wsam:Action="http://services/WebServiceSvc/listarEmpresasRequest" message="tns:listarEmpresas"/>
 <output wsam:Action="http://services/WebServiceSvc/listarEmpresasResponse" message="tns:listarEmpresasResponse"/>
 <fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarEmpresas/Fault/ParseException"/>
+</operation>
+<operation name="eliminarProyecto">
+<input wsam:Action="http://services/WebServiceSvc/eliminarProyectoRequest" message="tns:eliminarProyecto"/>
+<output wsam:Action="http://services/WebServiceSvc/eliminarProyectoResponse" message="tns:eliminarProyectoResponse"/>
 </operation>
 <operation name="insertarTarea">
 <input wsam:Action="http://services/WebServiceSvc/insertarTareaRequest" message="tns:insertarTarea"/>
@@ -250,46 +289,65 @@
 <output wsam:Action="http://services/WebServiceSvc/listarProyectosResponse" message="tns:listarProyectosResponse"/>
 <fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarProyectos/Fault/ParseException"/>
 </operation>
-<operation name="eliminarTarea">
-<input wsam:Action="http://services/WebServiceSvc/eliminarTareaRequest" message="tns:eliminarTarea"/>
-<output wsam:Action="http://services/WebServiceSvc/eliminarTareaResponse" message="tns:eliminarTareaResponse"/>
-<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/eliminarTarea/Fault/ParseException"/>
-</operation>
 <operation name="listarTareaPorId">
 <input wsam:Action="http://services/WebServiceSvc/listarTareaPorIdRequest" message="tns:listarTareaPorId"/>
 <output wsam:Action="http://services/WebServiceSvc/listarTareaPorIdResponse" message="tns:listarTareaPorIdResponse"/>
 <fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarTareaPorId/Fault/ParseException"/>
-</operation>
-<operation name="listarUsuarios">
-<input wsam:Action="http://services/WebServiceSvc/listarUsuariosRequest" message="tns:listarUsuarios"/>
-<output wsam:Action="http://services/WebServiceSvc/listarUsuariosResponse" message="tns:listarUsuariosResponse"/>
-<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarUsuarios/Fault/ParseException"/>
-</operation>
-<operation name="insertarUsuario">
-<input wsam:Action="http://services/WebServiceSvc/insertarUsuarioRequest" message="tns:insertarUsuario"/>
-<output wsam:Action="http://services/WebServiceSvc/insertarUsuarioResponse" message="tns:insertarUsuarioResponse"/>
-</operation>
-<operation name="eliminarEmpresa">
-<input wsam:Action="http://services/WebServiceSvc/eliminarEmpresaRequest" message="tns:eliminarEmpresa"/>
-<output wsam:Action="http://services/WebServiceSvc/eliminarEmpresaResponse" message="tns:eliminarEmpresaResponse"/>
-</operation>
-<operation name="eliminarProyecto">
-<input wsam:Action="http://services/WebServiceSvc/eliminarProyectoRequest" message="tns:eliminarProyecto"/>
-<output wsam:Action="http://services/WebServiceSvc/eliminarProyectoResponse" message="tns:eliminarProyectoResponse"/>
-</operation>
-<operation name="insertarProyecto">
-<input wsam:Action="http://services/WebServiceSvc/insertarProyectoRequest" message="tns:insertarProyecto"/>
-<output wsam:Action="http://services/WebServiceSvc/insertarProyectoResponse" message="tns:insertarProyectoResponse"/>
-<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/insertarProyecto/Fault/ParseException"/>
 </operation>
 <operation name="listarTareas">
 <input wsam:Action="http://services/WebServiceSvc/listarTareasRequest" message="tns:listarTareas"/>
 <output wsam:Action="http://services/WebServiceSvc/listarTareasResponse" message="tns:listarTareasResponse"/>
 <fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarTareas/Fault/ParseException"/>
 </operation>
+<operation name="eliminarTarea">
+<input wsam:Action="http://services/WebServiceSvc/eliminarTareaRequest" message="tns:eliminarTarea"/>
+<output wsam:Action="http://services/WebServiceSvc/eliminarTareaResponse" message="tns:eliminarTareaResponse"/>
+<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/eliminarTarea/Fault/ParseException"/>
+</operation>
+<operation name="listarTareasPorProyecto">
+<input wsam:Action="http://services/WebServiceSvc/listarTareasPorProyectoRequest" message="tns:listarTareasPorProyecto"/>
+<output wsam:Action="http://services/WebServiceSvc/listarTareasPorProyectoResponse" message="tns:listarTareasPorProyectoResponse"/>
+<fault message="tns:ParseException" name="ParseException" wsam:Action="http://services/WebServiceSvc/listarTareasPorProyecto/Fault/ParseException"/>
+</operation>
 </portType>
 <binding name="WebServiceSvcPortBinding" type="tns:WebServiceSvc">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="listarActividadesPorTarea">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="ParseException">
+<soap:fault name="ParseException" use="literal"/>
+</fault>
+</operation>
+<operation name="insertarActividad">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="ParseException">
+<soap:fault name="ParseException" use="literal"/>
+</fault>
+</operation>
+<operation name="autenticarUsuario">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="ParseException">
+<soap:fault name="ParseException" use="literal"/>
+</fault>
+</operation>
 <operation name="actualizarActividad">
 <soap:operation soapAction=""/>
 <input>
@@ -302,7 +360,7 @@
 <soap:fault name="ParseException" use="literal"/>
 </fault>
 </operation>
-<operation name="listarUsuarioPorId">
+<operation name="listarActividadPorId">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -338,7 +396,7 @@
 <soap:fault name="ParseException" use="literal"/>
 </fault>
 </operation>
-<operation name="eliminarActividad">
+<operation name="listarProyectoPorId">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -350,19 +408,7 @@
 <soap:fault name="ParseException" use="literal"/>
 </fault>
 </operation>
-<operation name="listarActividadPorId">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="ParseException">
-<soap:fault name="ParseException" use="literal"/>
-</fault>
-</operation>
-<operation name="insertarActividad">
+<operation name="listarUsuarioPorId">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -383,7 +429,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="autenticarUsuario">
+<operation name="listarActividades">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -404,7 +450,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="listarActividades">
+<operation name="eliminarActividad">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -416,7 +462,7 @@
 <soap:fault name="ParseException" use="literal"/>
 </fault>
 </operation>
-<operation name="listarProyectoPorId">
+<operation name="insertarUsuario">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -424,9 +470,6 @@
 <output>
 <soap:body use="literal"/>
 </output>
-<fault name="ParseException">
-<soap:fault name="ParseException" use="literal"/>
-</fault>
 </operation>
 <operation name="eliminarUsuario">
 <soap:operation soapAction=""/>
@@ -437,6 +480,18 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="listarUsuarios">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="ParseException">
+<soap:fault name="ParseException" use="literal"/>
+</fault>
+</operation>
 <operation name="insertarEmpresa">
 <soap:operation soapAction=""/>
 <input>
@@ -445,6 +500,27 @@
 <output>
 <soap:body use="literal"/>
 </output>
+</operation>
+<operation name="eliminarEmpresa">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="insertarProyecto">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="ParseException">
+<soap:fault name="ParseException" use="literal"/>
+</fault>
 </operation>
 <operation name="listarEmpresas">
 <soap:operation soapAction=""/>
@@ -457,6 +533,15 @@
 <fault name="ParseException">
 <soap:fault name="ParseException" use="literal"/>
 </fault>
+</operation>
+<operation name="eliminarProyecto">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
 </operation>
 <operation name="insertarTarea">
 <soap:operation soapAction=""/>
@@ -494,18 +579,6 @@
 <soap:fault name="ParseException" use="literal"/>
 </fault>
 </operation>
-<operation name="eliminarTarea">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="ParseException">
-<soap:fault name="ParseException" use="literal"/>
-</fault>
-</operation>
 <operation name="listarTareaPorId">
 <soap:operation soapAction=""/>
 <input>
@@ -518,58 +591,31 @@
 <soap:fault name="ParseException" use="literal"/>
 </fault>
 </operation>
-<operation name="listarUsuarios">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="ParseException">
-<soap:fault name="ParseException" use="literal"/>
-</fault>
-</operation>
-<operation name="insertarUsuario">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="eliminarEmpresa">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="eliminarProyecto">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="insertarProyecto">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="ParseException">
-<soap:fault name="ParseException" use="literal"/>
-</fault>
-</operation>
 <operation name="listarTareas">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="ParseException">
+<soap:fault name="ParseException" use="literal"/>
+</fault>
+</operation>
+<operation name="eliminarTarea">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="ParseException">
+<soap:fault name="ParseException" use="literal"/>
+</fault>
+</operation>
+<operation name="listarTareasPorProyecto">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

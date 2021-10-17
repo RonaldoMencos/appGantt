@@ -81,6 +81,11 @@
                             <a class="dropdown-item" href="mantenimientoActividad">Mantenimiento Actividad</a>
                         </div>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-toggle" href="reporteGantt.jsp" id="navbarDropdown" role="button">
+                            Reporte
+                        </a>
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <a href="login?cerrar=true"  class="btn btn-primary my-2 my-sm-0 d-flex justify-content-center align-content-between">

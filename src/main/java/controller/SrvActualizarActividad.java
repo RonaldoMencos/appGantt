@@ -18,10 +18,6 @@ import model.ParseException_Exception;
 import model.Tarea;
 import model.WebServiceSvc_Service;
 
-/**
- *
- * @author oscar
- */
 public class SrvActualizarActividad extends HttpServlet {
 
     private List<Tarea> listaTarea;

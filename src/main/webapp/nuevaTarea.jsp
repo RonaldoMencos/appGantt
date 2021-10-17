@@ -84,7 +84,7 @@ $("#datepicker2").datepicker({
                 <%   
                 } else {
                 %>
-                    <script>swal("Error", "", "error");</script>
+                    <script>swal("Error", "Las fechas deben de estar en el rango de fechas del proyecto", "error");</script>
                 <%    
                 }
             }

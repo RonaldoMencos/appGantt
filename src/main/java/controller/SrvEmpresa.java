@@ -14,10 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.WebServiceSvc_Service;
 
-/**
- *
- * @author oscar
- */
 public class SrvEmpresa extends HttpServlet {
 
     /**

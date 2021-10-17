@@ -16,13 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Empresa;
 import model.ParseException_Exception;
-import model.Tarea;
 import model.WebServiceSvc_Service;
 
-/**
- *
- * @author oscar
- */
 public class SrvActualizarProyecto extends HttpServlet {
 
     private List<Empresa> listaEmpresa;

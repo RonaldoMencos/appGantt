@@ -16,10 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.ParseException_Exception;
 import model.WebServiceSvc_Service;
 
-/**
- *
- * @author oscar
- */
+
 public class SrvMantenimientoTarea extends HttpServlet {
 
     /**

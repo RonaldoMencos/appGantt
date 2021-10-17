@@ -72,6 +72,10 @@
 
 <xs:element name="listarActividades" type="tns:listarActividades"/>
 
+<xs:element name="listarActividadesPorTarea" type="tns:listarActividadesPorTarea"/>
+
+<xs:element name="listarActividadesPorTareaResponse" type="tns:listarActividadesPorTareaResponse"/>
+
 <xs:element name="listarActividadesResponse" type="tns:listarActividadesResponse"/>
 
 <xs:element name="listarEmpresaPorId" type="tns:listarEmpresaPorId"/>
@@ -95,6 +99,10 @@
 <xs:element name="listarTareaPorIdResponse" type="tns:listarTareaPorIdResponse"/>
 
 <xs:element name="listarTareas" type="tns:listarTareas"/>
+
+<xs:element name="listarTareasPorProyecto" type="tns:listarTareasPorProyecto"/>
+
+<xs:element name="listarTareasPorProyectoResponse" type="tns:listarTareasPorProyectoResponse"/>
 
 <xs:element name="listarTareasResponse" type="tns:listarTareasResponse"/>
 
@@ -266,6 +274,18 @@
 </xs:complexContent>
 </xs:complexType>
 
+<xs:complexType name="listarTareasPorProyecto">
+<xs:sequence>
+<xs:element name="proyecto" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarTareasPorProyectoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:tarea" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="insertarEmpresa">
 <xs:sequence>
 <xs:element name="nombre" type="xs:string" minOccurs="0"/>
@@ -323,15 +343,15 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="eliminarTarea">
+<xs:complexType name="listarActividadesPorTarea">
 <xs:sequence>
-<xs:element name="idTarea" type="xs:int"/>
+<xs:element name="tarea" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="eliminarTareaResponse">
+<xs:complexType name="listarActividadesPorTareaResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:int"/>
+<xs:element name="return" type="tns:actividad" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -342,6 +362,18 @@
 <xs:complexType name="listarTareasResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:tarea" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarTarea">
+<xs:sequence>
+<xs:element name="idTarea" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eliminarTareaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 

@@ -7,6 +7,9 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -86,11 +89,23 @@ public class SrvActividad extends HttpServlet {
             fechaInicio = request.getParameter("fechaInicioActividad").toString();
             fechaFin = request.getParameter("fechaFinActividad").toString();
             tarea = Integer.parseInt(request.getParameter("tarea").toString());
-            respuesta = webServiceSvc.getWebServiceSvcPort().insertarActividad(titulo, descripcion, fechaInicio, fechaFin, tarea);
+            Tarea p = webServiceSvc.getWebServiceSvcPort().listarTareaPorId(tarea);
+            
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Date fechaInit= format.parse(fechaInicio);
+            Date fechaEnd= format.parse(fechaFin);
+            if ((fechaInit.before(fechaEnd) || fechaInit.equals(fechaEnd)) && (!p.getFechaInicio().toGregorianCalendar().getTime().after(fechaInit) && !p.getFechaFin().toGregorianCalendar().getTime().before(fechaInit))
+                    && (!p.getFechaInicio().toGregorianCalendar().getTime().after(fechaEnd) && !p.getFechaFin().toGregorianCalendar().getTime().before(fechaEnd))) {
+                respuesta = webServiceSvc.getWebServiceSvcPort().insertarActividad(titulo, descripcion, fechaInicio, fechaFin, tarea);
+            } else {
+                respuesta = 0;
+            }
             request.setAttribute("respuesta", respuesta);
             processRequest(request, response);
 
         } catch (ParseException_Exception ex) {
+            Logger.getLogger(SrvActividad.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(SrvActividad.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -6,7 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -17,10 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import model.ParseException_Exception;
 import model.WebServiceSvc_Service;
 
-/**
- *
- * @author oscar
- */
 public class SrvMantenimientoActividad extends HttpServlet {
 
     /**

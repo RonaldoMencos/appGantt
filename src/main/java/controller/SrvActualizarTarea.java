@@ -16,13 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.ParseException_Exception;
 import model.Proyecto;
-import model.Tarea;
 import model.WebServiceSvc_Service;
 
-/**
- *
- * @author oscar
- */
 public class SrvActualizarTarea extends HttpServlet {
 
     private List<Proyecto> listaProyecto;
