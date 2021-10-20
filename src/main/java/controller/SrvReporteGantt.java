@@ -21,6 +21,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -97,8 +99,10 @@ public class SrvReporteGantt extends HttpServlet {
                 writer.setPageEvent(event);
                 documento.open();
                 documento.setMargins(left, right, top, bottom);
-
-                weeks = p.getFechaFin().toGregorianCalendar().get(Calendar.WEEK_OF_YEAR) - p.getFechaInicio().toGregorianCalendar().get(Calendar.WEEK_OF_YEAR);
+                LocalDate startDate = LocalDate.of(p.getFechaInicio().getYear(), p.getFechaInicio().getMonth(), p.getFechaInicio().getDay());
+                LocalDate endDate = LocalDate.of(p.getFechaFin().getYear(), p.getFechaFin().getMonth(), p.getFechaFin().getDay());
+                Long semanas = ChronoUnit.WEEKS.between(startDate, endDate);
+                weeks = semanas.intValue();
                 tabla = new PdfPTable(weeks + 1);
                 PdfPCell celda1 = new PdfPCell(new Paragraph("", fontNormal));
                 celda1.setBackgroundColor(BaseColor.WHITE);
@@ -153,7 +157,6 @@ public class SrvReporteGantt extends HttpServlet {
                             if (i == 1) {
                                 contadorColor = 0;
                                 fechaInit.setTime(p.getFechaInicio().toGregorianCalendar().getTime());
-                                System.out.println(fechaInit.getTime());
                                 fechaEnd.setTime(p.getFechaInicio().toGregorianCalendar().getTime());
                                 fechaEnd.add(Calendar.DAY_OF_YEAR, 7);
                             } else {
@@ -176,7 +179,6 @@ public class SrvReporteGantt extends HttpServlet {
                                 celdaBlanca.setBorderWidth(2F);
                                 tabla.addCell(celdaBlanca);
                             }
-                            System.out.println(contadorColor);
                             contadorColor++;
                             if (contadorColor == 6) {
                                 contadorColor = 0;
@@ -198,7 +200,11 @@ public class SrvReporteGantt extends HttpServlet {
                     documento.open();
                     documento.setMargins(left, right, top, bottom);
 
-                    weeks = p.getFechaFin().toGregorianCalendar().get(Calendar.WEEK_OF_YEAR) - p.getFechaInicio().toGregorianCalendar().get(Calendar.WEEK_OF_YEAR);
+                    LocalDate startDate = LocalDate.of(p.getFechaInicio().getYear(), p.getFechaInicio().getMonth(), p.getFechaInicio().getDay());
+                    LocalDate endDate = LocalDate.of(p.getFechaFin().getYear(), p.getFechaFin().getMonth(), p.getFechaFin().getDay());
+                    Long semanas = ChronoUnit.WEEKS.between(startDate, endDate);
+                    weeks = semanas.intValue();
+                    System.out.println("weeks -" + weeks);
                     tabla = new PdfPTable(weeks + 1);
                     PdfPCell celda1 = new PdfPCell(new Paragraph("", fontNormal));
                     celda1.setBackgroundColor(BaseColor.WHITE);
@@ -251,7 +257,6 @@ public class SrvReporteGantt extends HttpServlet {
                                 if (i == 1) {
                                     contadorColor = 0;
                                     fechaInit.setTime(p.getFechaInicio().toGregorianCalendar().getTime());
-                                    System.out.println(fechaInit.getTime());
                                     fechaEnd.setTime(p.getFechaInicio().toGregorianCalendar().getTime());
                                     fechaEnd.add(Calendar.DAY_OF_YEAR, 7);
                                 } else {
@@ -274,7 +279,6 @@ public class SrvReporteGantt extends HttpServlet {
                                     celdaBlanca.setBorderWidth(2F);
                                     tabla.addCell(celdaBlanca);
                                 }
-                                System.out.println(contadorColor);
                                 contadorColor++;
                                 if (contadorColor == 6) {
                                     contadorColor = 0;
