@@ -21,6 +21,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -56,10 +57,9 @@ public class SrvReporteGantt extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/pdf");
         OutputStream out = response.getOutputStream();
-        Date date = new Date();
-
-        float left = 36;
-        float right = 36;
+        SimpleDateFormat format = new SimpleDateFormat("dd MMM");
+        float left = -10;
+        float right = -10;
         float top = 90;
         float bottom = 36;
         List<BaseColor> listaColores = new ArrayList<BaseColor>();
@@ -74,16 +74,17 @@ public class SrvReporteGantt extends HttpServlet {
 
         // add header and footer
         HeaderFooterPageEvent event = new HeaderFooterPageEvent();
-
+        
         try {
             PdfWriter writer = PdfWriter.getInstance(documento, out);
-
-            int weeks;
-
+            int days;
+            Calendar start = Calendar.getInstance();
+            
             Font fontNormal = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.BLACK);
+            Font fontPequenia = new Font(Font.FontFamily.HELVETICA, 6, Font.NORMAL, BaseColor.BLACK);
             Font fontNormalWhite = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.WHITE);
             PdfPTable tabla = null;
-
+            
             WebServiceSvc_Service service = new WebServiceSvc_Service();
             Empresa e;
             BaseColor lightGrey = new BaseColor(233, 233, 233);
@@ -93,7 +94,7 @@ public class SrvReporteGantt extends HttpServlet {
                 Proyecto p;
                 p = service.getWebServiceSvcPort().listarProyectoPorId(Integer.parseInt(request.getParameter("txtBuscar").toString()));
                 e = service.getWebServiceSvcPort().listarEmpresaPorId(p.getEmpresa());
-
+                start.setTime(p.getFechaInicio().toGregorianCalendar().getTime());
                 event.e = e;
                 event.p = p;
                 writer.setPageEvent(event);
@@ -101,19 +102,28 @@ public class SrvReporteGantt extends HttpServlet {
                 documento.setMargins(left, right, top, bottom);
                 LocalDate startDate = LocalDate.of(p.getFechaInicio().getYear(), p.getFechaInicio().getMonth(), p.getFechaInicio().getDay());
                 LocalDate endDate = LocalDate.of(p.getFechaFin().getYear(), p.getFechaFin().getMonth(), p.getFechaFin().getDay());
-                Long semanas = ChronoUnit.WEEKS.between(startDate, endDate);
-                weeks = semanas.intValue();
-                tabla = new PdfPTable(weeks + 1);
+                Long semanas = ChronoUnit.DAYS.between(startDate, endDate);
+                days = semanas.intValue();
+                tabla = new PdfPTable(days + 1);
+                int[] widths = new int[days + 1];
+                for (int i = 0; i < widths.length; i++) {
+                    if (i == 0) {
+                        widths[i] = 20;
+                    } else {
+                        widths[i] = 100 / days;
+                    }
+                }
+                tabla.setWidths(widths);
                 PdfPCell celda1 = new PdfPCell(new Paragraph("", fontNormal));
                 celda1.setBackgroundColor(BaseColor.WHITE);
                 celda1.setBorderColor(BaseColor.WHITE);
                 celda1.setBorder(Rectangle.BOX);
                 celda1.setBorderWidth(2F);
+                
                 PdfPCell celdaDinamica;
                 tabla.addCell(celda1);
-
-                for (Integer i = 1; i <= weeks; i++) {
-                    celdaDinamica = new PdfPCell(new Paragraph("Semana " + i.toString(), fontNormal));
+                for (Date date = start.getTime(); start.getTime().before(p.getFechaFin().toGregorianCalendar().getTime()); start.add(Calendar.DATE, 1), date = start.getTime()) {                    
+                    celdaDinamica = new PdfPCell(new Paragraph(format.format(date), fontPequenia));
                     celdaDinamica.setBackgroundColor(lightGrey);
                     celdaDinamica.setBorderColor(BaseColor.WHITE);
                     celdaDinamica.setBorder(Rectangle.BOX);
@@ -122,9 +132,9 @@ public class SrvReporteGantt extends HttpServlet {
                     celdaDinamica.setHorizontalAlignment(Element.ALIGN_CENTER);
                     tabla.addCell(celdaDinamica);
                 }
-
+                
                 List<Tarea> listTareas = service.getWebServiceSvcPort().listarTareasPorProyecto(p.getIdProyecto());
-
+                
                 for (Tarea t : listTareas) {
                     PdfPCell celdaTituloTarea = new PdfPCell(new Paragraph(t.getTitulo().toUpperCase(), fontNormalWhite));
                     BaseColor darkBlue = new BaseColor(8, 64, 115);
@@ -132,11 +142,11 @@ public class SrvReporteGantt extends HttpServlet {
                     celdaTituloTarea.setBorderColor(BaseColor.WHITE);
                     celdaTituloTarea.setBorder(Rectangle.BOX);
                     celdaTituloTarea.setBorderWidth(2F);
-
+                    
                     celdaTituloTarea.setPadding(5f);
                     celdaTituloTarea.setHorizontalAlignment(Element.ALIGN_CENTER);
                     tabla.addCell(celdaTituloTarea);
-                    for (Integer i = 1; i <= weeks; i++) {
+                    for (Integer i = 1; i <= days; i++) {
                         PdfPCell celdaBlanca = new PdfPCell(new Paragraph("", fontNormal));
                         celdaBlanca.setBackgroundColor(BaseColor.WHITE);
                         celdaBlanca.setBorder(Rectangle.NO_BORDER);
@@ -153,25 +163,21 @@ public class SrvReporteGantt extends HttpServlet {
                         celdaTituloActividad.setPadding(5f);
                         celdaTituloActividad.setHorizontalAlignment(Element.ALIGN_CENTER);
                         tabla.addCell(celdaTituloActividad);
-                        for (Integer i = 1; i <= weeks; i++) {
-                            if (i == 1) {
-                                contadorColor = 0;
-                                fechaInit.setTime(p.getFechaInicio().toGregorianCalendar().getTime());
-                                fechaEnd.setTime(p.getFechaInicio().toGregorianCalendar().getTime());
-                                fechaEnd.add(Calendar.DAY_OF_YEAR, 7);
-                            } else {
-                                fechaInit.add(Calendar.DAY_OF_YEAR, 7);
-                                fechaEnd.add(Calendar.DAY_OF_YEAR, 7);
-                            }
+                        contadorColor = 0;
+                        start.setTime(p.getFechaInicio().toGregorianCalendar().getTime());
+                        for (Date date = start.getTime(); start.getTime().before(p.getFechaFin().toGregorianCalendar().getTime()); start.add(Calendar.DATE, 1), date = start.getTime()) {                            
+                            
                             PdfPCell celdaBlanca = new PdfPCell(new Paragraph("", fontNormal));
-                            if (a.getFechaInicio().toGregorianCalendar().getTime().getTime() >= fechaInit.getTimeInMillis()
-                                    && a.getFechaFin().toGregorianCalendar().getTimeInMillis() <= fechaEnd.getTimeInMillis()) {
+                            System.out.println("Fecha inicio a:" + a.getFechaInicio().toGregorianCalendar().getTime());
+                            System.out.println("Fecha fin a:" + a.getFechaFin().toGregorianCalendar().getTime());
+                            System.out.println("Fecha calendar:" + start.getTime());
+                            if (a.getFechaInicio().toGregorianCalendar().getTime().getTime() >= start.getTimeInMillis() && a.getFechaFin().toGregorianCalendar().getTimeInMillis() <= start.getTimeInMillis()) {
                                 celdaBlanca.setBackgroundColor(listaColores.get(contadorColor));
                                 celdaBlanca.setBorderColor(BaseColor.WHITE);
                                 celdaBlanca.setBorder(Rectangle.BOX);
                                 celdaBlanca.setBorderWidth(2F);
                                 tabla.addCell(celdaBlanca);
-
+                                
                             } else {
                                 celdaBlanca.setBackgroundColor(lightGrey);
                                 celdaBlanca.setBorderColor(BaseColor.WHITE);
@@ -187,25 +193,24 @@ public class SrvReporteGantt extends HttpServlet {
                     }
                 }
                 documento.add(tabla);
-
+                
             } else {
                 List<Proyecto> listProyecto = new ArrayList<Proyecto>();
                 listProyecto = service.getWebServiceSvcPort().listarProyectos();
                 for (Proyecto p : listProyecto) {
                     e = service.getWebServiceSvcPort().listarEmpresaPorId(p.getEmpresa());
-
+                    
                     event.e = e;
                     event.p = p;
                     writer.setPageEvent(event);
                     documento.open();
                     documento.setMargins(left, right, top, bottom);
-
+                    
                     LocalDate startDate = LocalDate.of(p.getFechaInicio().getYear(), p.getFechaInicio().getMonth(), p.getFechaInicio().getDay());
                     LocalDate endDate = LocalDate.of(p.getFechaFin().getYear(), p.getFechaFin().getMonth(), p.getFechaFin().getDay());
-                    Long semanas = ChronoUnit.WEEKS.between(startDate, endDate);
-                    weeks = semanas.intValue();
-                    System.out.println("weeks -" + weeks);
-                    tabla = new PdfPTable(weeks + 1);
+                    Long semanas = ChronoUnit.DAYS.between(startDate, endDate);
+                    days = semanas.intValue();
+                    tabla = new PdfPTable(days + 1);
                     PdfPCell celda1 = new PdfPCell(new Paragraph("", fontNormal));
                     celda1.setBackgroundColor(BaseColor.WHITE);
                     celda1.setBorderColor(BaseColor.WHITE);
@@ -213,8 +218,8 @@ public class SrvReporteGantt extends HttpServlet {
                     celda1.setBorderWidth(2F);
                     PdfPCell celdaDinamica;
                     tabla.addCell(celda1);
-                    for (Integer i = 1; i <= weeks; i++) {
-                        celdaDinamica = new PdfPCell(new Paragraph("Semana " + i.toString(), fontNormal));
+                    for (Date date = start.getTime(); start.before(p.getFechaFin().toGregorianCalendar().getTime()); start.add(Calendar.DATE, 1), date = start.getTime()) {
+                        celdaDinamica = new PdfPCell(new Paragraph(format.format(date)));
                         celdaDinamica.setBackgroundColor(lightGrey);
                         celdaDinamica.setBorderColor(BaseColor.WHITE);
                         celdaDinamica.setBorder(Rectangle.BOX);
@@ -223,7 +228,7 @@ public class SrvReporteGantt extends HttpServlet {
                         celdaDinamica.setHorizontalAlignment(Element.ALIGN_CENTER);
                         tabla.addCell(celdaDinamica);
                     }
-
+                    
                     List<Tarea> listTareas = service.getWebServiceSvcPort().listarTareasPorProyecto(p.getIdProyecto());
                     for (Tarea t : listTareas) {
                         PdfPCell celdaTituloTarea = new PdfPCell(new Paragraph(t.getTitulo().toUpperCase(), fontNormalWhite));
@@ -232,11 +237,11 @@ public class SrvReporteGantt extends HttpServlet {
                         celdaTituloTarea.setBorderColor(BaseColor.WHITE);
                         celdaTituloTarea.setBorder(Rectangle.BOX);
                         celdaTituloTarea.setBorderWidth(2F);
-
+                        
                         celdaTituloTarea.setPadding(5f);
                         celdaTituloTarea.setHorizontalAlignment(Element.ALIGN_CENTER);
                         tabla.addCell(celdaTituloTarea);
-                        for (Integer i = 1; i <= weeks; i++) {
+                        for (Integer i = 1; i <= days; i++) {
                             PdfPCell celdaBlanca = new PdfPCell(new Paragraph("", fontNormal));
                             celdaBlanca.setBackgroundColor(BaseColor.WHITE);
                             celdaBlanca.setBorder(Rectangle.NO_BORDER);
@@ -253,7 +258,7 @@ public class SrvReporteGantt extends HttpServlet {
                             celdaTituloActividad.setPadding(5f);
                             celdaTituloActividad.setHorizontalAlignment(Element.ALIGN_CENTER);
                             tabla.addCell(celdaTituloActividad);
-                            for (Integer i = 1; i <= weeks; i++) {
+                            for (Integer i = 1; i <= days; i++) {
                                 if (i == 1) {
                                     contadorColor = 0;
                                     fechaInit.setTime(p.getFechaInicio().toGregorianCalendar().getTime());
@@ -271,7 +276,7 @@ public class SrvReporteGantt extends HttpServlet {
                                     celdaBlanca.setBorder(Rectangle.BOX);
                                     celdaBlanca.setBorderWidth(2F);
                                     tabla.addCell(celdaBlanca);
-
+                                    
                                 } else {
                                     celdaBlanca.setBackgroundColor(lightGrey);
                                     celdaBlanca.setBorderColor(BaseColor.WHITE);
@@ -290,11 +295,11 @@ public class SrvReporteGantt extends HttpServlet {
                     writer.setPageEmpty(false);
                     documento.newPage();
                 }
-
+                
             }
-
+            
             documento.close();
-
+            
         } catch (DocumentException ex) {
             Logger.getLogger(SrvReporteGantt.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException_Exception ex) {
@@ -302,7 +307,7 @@ public class SrvReporteGantt extends HttpServlet {
         } finally {
             out.close();
         }
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
