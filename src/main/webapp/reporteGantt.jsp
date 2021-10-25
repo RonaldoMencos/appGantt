@@ -32,17 +32,6 @@
             </div>
         </form>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>        <script src="js/sweetalert.min.js" type="text/javascript"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-        <%
-            if (request.getAttribute("respuesta") != null) {
-                String respuesta = request.getAttribute("respuesta").toString();
-                if (respuesta.equals("1")) {
-        %>
-        <script>swal("Eliminado con Éxito!", "", "success");</script>
-        <%
-                }
-            }
-        %>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>       
     </body>
 </html>
